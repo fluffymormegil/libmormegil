@@ -32,8 +32,6 @@
 namespace libmormegil
 {
     inline template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
-        int length_inf() { return std::min(std::abs(y), std::abs(x)); }
-    };
 }
 #endif // libmormegil_abs_hh
 
