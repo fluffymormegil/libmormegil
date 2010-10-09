@@ -1,4 +1,4 @@
-// libmormegil/abs.hh
+// dice.cc
 //
 // Copyright 2010 Martin Read. All rights reserved.
 // 
@@ -26,15 +26,48 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#ifndef libmormegil_abs_hh
-#define libmormegil_abs_hh
+#include <stdint.h>
+#include <string.h>
+#include <libmormegil/dice.h>
+#include <libmormegil/S20prng.hh>
 
-namespace libmormegil
+libmormegil::S20prng dice_generator;
+
+extern "C" int dice(int count, int sides)
 {
-    inline template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
-        int length_inf() { return std::min(std::abs(y), std::abs(x)); }
-    };
+    int value = 0;
+    unsigned divisor;
+    unsigned limit;
+    uint32_t genned;
+    value = count;
+    divisor = 0xffffffffu / unsigned(sides);
+    limit = divisor * sides;
+    for ( ; count; --count)
+    {
+        do
+        {
+            genned = dice_generator.generate();
+        } while (genned >= limit);
+        value += genned / divisor;
+    }
+    return value;
 }
-#endif // libmormegil_abs_hh
 
-// vim:ts=8:sw=4:expandtab:fo=c
+extern "C" void dice_setstate(const uint32_t *key, const uint32_t *nonce, const uint64_t *counter, const int *subcounter)
+{
+    dice_generator.counter = *counter;
+    memcpy(dice_generator.key, key, 8 * sizeof(uint32_t));
+    memcpy(dice_generator.nonce, nonce, 2 * sizeof(uint32_t));
+    dice_generator.subcounter = *subcounter;
+}
+
+extern "C" void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter, int *subcounter)
+{
+    memcpy(key, dice_generator.key, 8 * sizeof(uint32_t));
+    memcpy(dice_generator.nonce, nonce, 2 * sizeof(uint32_t));
+    *subcounter = dice_generator.subcounter;
+    *counter = dice_generator.counter;
+}
+
+// vim:ts=8:sw=4:expandtab:fo=cq
+

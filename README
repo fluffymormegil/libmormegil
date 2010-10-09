@@ -1,0 +1,15 @@
+libmormegil is a collection of library functions and C++ classes intended for
+use in various projects that I host on github under the name fluffymormegil.
+
+INSTALLATION
+============
+Some elements of libmormegil are self-contained single-header C++ classes
+which you can safely copy directly into your own projects if you want. Others
+are intended to be installed as system-wide shared libraries.
+
+ACKNOWLEDGEMENTS
+================
+The Salsa20 stream cipher was invented by Daniel J. Bernstein; the
+implementation used in the libmormegil::S20prng C++ class is based on DJB's
+public domain reference implementation.
+

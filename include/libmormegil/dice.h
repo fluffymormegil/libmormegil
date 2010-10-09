@@ -1,4 +1,4 @@
-// libmormegil/abs.hh
+// libmormegil/dice.h
 //
 // Copyright 2010 Martin Read. All rights reserved.
 // 
@@ -26,15 +26,21 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#ifndef libmormegil_abs_hh
-#define libmormegil_abs_hh
+#ifndef libmormegil_dice_h
+#define libmormegil_dice_h
 
-namespace libmormegil
-{
-    inline template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
-        int length_inf() { return std::min(std::abs(y), std::abs(x)); }
-    };
-}
-#endif // libmormegil_abs_hh
+#include <stdint.h>
+// this function is pitched at C99 users.
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+extern int dice(int count, int sides);
+extern void dice_setstate(const uint32_t *key, const uint32_t *nonce, const uint64_t *counter, const int *subcounter);
+extern void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter, int *subcounter);
+#ifdef __cplusplus
+};
+#endif
+#endif // libmormegil_dice_h
 
 // vim:ts=8:sw=4:expandtab:fo=c

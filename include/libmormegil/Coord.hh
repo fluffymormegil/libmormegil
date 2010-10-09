@@ -92,4 +92,4 @@ namespace libmormegil
 }
 #endif // libmormegil_Coord_hh
 
-// vim:ts=8:sw=4:expandtab
+// vim:ts=8:sw=4:expandtab:fo=c
