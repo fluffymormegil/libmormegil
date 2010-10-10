@@ -5,3 +5,4 @@
 *.gz
 *.tgz
 .*.sw?
+dirs.mk

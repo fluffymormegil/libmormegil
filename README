@@ -5,9 +5,12 @@ that the GNU LGPL has the effect I desire when applied to C++ templates").
 
 == INSTALLATION
 
-Some elements of libmormegil are self-contained single-header C++ classes
-which you can safely copy directly into your own projects if you want. Others
-are intended to be installed as system-wide shared libraries.
+If you want to set up a system-wide installation,
+
+        ./configure && make all && sudo make install
+
+should do the trick. If it doesn't, let me know what platform you're on and
+how to fix the issue.
 
 == ACKNOWLEDGEMENTS
 
@@ -40,3 +43,18 @@ Copyright assignment is neither required nor desired.
 
 Contributions are accepted only under the terms of the BSD licence used on the
 existing code.
+
+== DO NOT REQUEST
+
+Things not to submit:
+
+* Patches that depend on recursive make. '''Everything''' is built using
+  the top-level Makefile.
+
+* Patches that depend on GNU autotools.
+
+Things not to request (but feel free to submit patches to provide, on the
+understanding that if they break, I'm not going to fix them):
+
+* Support for building under Your Favourite GUI Tool
+
