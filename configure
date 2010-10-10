@@ -1,0 +1,47 @@
+#! /usr/bin/perl -w
+
+use strict;
+use Getopt::Long;
+my $prefix='/usr/local';
+my $exec_prefix='';
+my $bindir='';
+my $libdir='';
+my $includedir='';
+my $oldincludedir='/usr/include';
+my $datarootdir='';
+my $mandir='';
+my $man3dir='';
+my $docdir='';
+my $verbose='';
+GetOptions(
+'prefix=s' => \$prefix, 'exec_prefix=s' => \$exec_prefix,
+'includedir=s' => \$includedir, 'oldincludedir=s' => \$oldincludedir,
+'bindir=s' => \$bindir, 'libdir=s' => \$libdir,
+'datarootdir=s' => \$datarootdir, 'mandir=s' => \$mandir,
+'man3dir=s' => \$man3dir, 'docdir=s' => \$docdir,
+'verbose' => \$verbose, 'quiet' => sub { $verbose = 0; } );
+
+print "Configuring libmormegil build/install process...\n" if $verbose;
+
+if ($exec_prefix eq '') { $exec_prefix = "${prefix}"; }
+if ($bindir eq '') { $bindir = "${exec_prefix}/bin"; }
+if ($libdir eq '') { $libdir = "${prefix}/lib"; }
+if ($includedir eq '') { $includedir = "${prefix}/include"; }
+if ($datarootdir eq '') { $datarootdir = "${prefix}/share"; }
+if ($mandir eq '') { $mandir = "${datarootdir}/man"; }
+if ($man3dir eq '') { $man3dir = "${mandir}/man3"; }
+if ($docdir eq '') { $docdir = "${datarootdir}/doc/libmormegil"; }
+
+print "Writing dirs.mk...\n" if $verbose;
+open(DIRS_MK, '>', "dirs.mk") or die $!;
+print DIRS_MK "prefix=${prefix}\n";
+print DIRS_MK "exec_prefix=${exec_prefix}\n";
+print DIRS_MK "bindir=${bindir}\n";
+print DIRS_MK "libdir=${libdir}\n";
+print DIRS_MK "includedir=${includedir}\n";
+print DIRS_MK "oldincludedir=${oldincludedir}\n";
+print DIRS_MK "datarootdir=${datarootdir}\n";
+print DIRS_MK "mandir=${mandir}\n";
+print DIRS_MK "man3dir=${man3dir}\n";
+print DIRS_MK "docdir=${docdir}\n";
+close(DIRS_MK);
