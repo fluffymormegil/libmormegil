@@ -1,0 +1,83 @@
+.TH DICE 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+dice, dice_setstate, dice_getstate \- simulate rolling of arbitrary dice
+.SH SYNOPSIS
+#include <stdint.h>
+
+#include <libmormegil/dice.h>
+
+int dice(int count, int sides);
+
+void dice_setstate(const uint32_t *key, const uint32_t *nonce, const uint64_t *counter, const int *subcounter);
+
+void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter, int *subcounter);
+
+.SH DESCRIPTION
+.I dice
+is a C-compatible wrapper around an instance of the libmormegil::S20prng
+pseudorandom number generator.
+
+The \fIdice\fP function simulates rolling \fIcount\fP dice of \fIsides\fP
+sides each and summing the result. For example:
+
+.IP "" 8
+dice(2, 6)
+
+.PP
+rolls two six-sided dice, providing a number between 2 and 12 inclusive.
+
+The \fIdice_setstate\fP function uses the contents of the memory pointed
+to by \fIkey\fP, \fInonce\fP, \fIcounter\fP, and \fIsubcounter\fP to
+initialize the internal state of the libmormegil::S20prng object used by
+the \fIdice\fP function. The data pointed to by these pointers should be
+as follows:
+
+.IP "key" 16
+An array of eight unsigned 32-bit integers to be used as a Salsa20/12 key.
+
+.IP "nonce" 16
+An array of two unsigned 32-bit integers to be used as a Salsa20/12
+initialization vector.
+
+.IP "counter" 16
+An unsigned 64-bit integer to be used as the starting value of a Salsa20/12
+stream offset counter.
+
+.IP "subcounter" 16
+An integer between 0 and 15 inclusive, indicating which of the sixteen
+32-bit words from the first Salsa20/12 keystream block generated should be
+returned by the first call to \fIdice\fP.
+
+.PP
+The \fIdice_getstate\fP function performs the opposite role to \fIdice_setstate\fP:
+it copies the generator's state into the memory pointed to by the provided
+pointers. This allows the generator's state to be (for example) stored in a
+saved-game file so that save+restore is a no-op with respect to game
+mechanics.
+
+.SH CAVEATS
+
+These functions are not re-entrant or thread-safe. 
+
+The behaviour of \fIdice_setstate\fP and \fIdice_getstate\fP is undefined
+if the provided pointers are invalid. Note in particular that passing
+invalid pointers to \fIdice_getstate\fP may reasonably be expected to result
+in either a fandango on core or (if you're lucky) an immediate segfault.
+
+The behaviour of \fIdice\fP is undefined if:
+
+.IP \(bu 4
+The value of \fIsides\fP or \fIcount\fP is negative.
+
+.IP \(bu 4
+The product of \fIsides\fP and \fIcount\fP would overflow a signed int.
+
+Extremely large values of \fIsides\fP may cause delays due to the mechanism
+used for converting the libmormegil::S20prng output into a number between
+0 and (\fIsides\fP - 1).
+
+.SH SEE ALSO
+
+libmormegil(3), libmormegil::S20prng(3)
+
+
