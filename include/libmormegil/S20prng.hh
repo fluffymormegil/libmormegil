@@ -93,10 +93,8 @@ namespace libmormegil
                 doubleround();
             }
         }
-        uint32_t generate()
+        void runstate()
         {
-            if (!subcounter)
-            {
                 state[0] = Fixed1;
                 state[1] = key[0];
                 state[2] = key[1];
@@ -113,8 +111,14 @@ namespace libmormegil
                 state[13] = key[6];
                 state[14] = key[7];
                 state[15] = Fixed4;
-                ++counter;
                 slash(12);
+        }
+        uint32_t generate()
+        {
+            if (!subcounter)
+            {
+                runstate();
+                ++counter;
             }
             ++subcounter;
             subcounter &= 15;
