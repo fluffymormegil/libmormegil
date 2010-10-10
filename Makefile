@@ -4,10 +4,12 @@
 include version.mk
 LIBDIR=$(DESTDIR)lib
 OBJDIR=$(DESTDIR)obj
+MANDIR=$(DESTDIR)man
 INCDIR=./include
 
-LIBMORMEGIL=$(LIBDIR)/libmormegil-$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH).so
+LIBMORMEGIL=$(LIBDIR)/libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
 LIBOBJS=$(OBJDIR)/dice.o
+MANPAGES=$(MANDIR)/dice.3
 
 # GCC flags
 COMMON_FLAGS=-fPIC -I$(INCDIR)
