@@ -6,3 +6,4 @@
 *.tgz
 .*.sw?
 dirs.mk
+libmormegil-1.0.0/*
