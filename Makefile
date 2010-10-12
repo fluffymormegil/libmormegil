@@ -38,7 +38,7 @@ clean:
 
 install: install-headers
 	cp $(LIBMORMEGIL_BUILT) $(DESTDIR)$(libdir)/$(LIB_REALNAME)
-	(cd $(DESTDIR)$(libdir) && ln -s $(LIB_REALNAME) $(LIB_SONAME) )
+	(cd $(DESTDIR)$(libdir) && ln -sf $(LIB_REALNAME) $(LIB_SONAME) )
 
 srcarchive: clean
 	mkdir $(SRCARCH_NAME)
