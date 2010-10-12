@@ -3,7 +3,7 @@ use in various projects that I host on github under the name fluffymormegil.
 It is released under the BSD licence (for reasons including "I'm not convinced
 that the GNU LGPL has the effect I desire when applied to C++ templates").
 
-== INSTALLATION
+== INSTALLATION ==
 
 If you want to set up a system-wide installation,
 
@@ -12,13 +12,15 @@ If you want to set up a system-wide installation,
 should do the trick. If it doesn't, let me know what platform you're on and
 how to fix the issue.
 
-== ACKNOWLEDGEMENTS
+== ACKNOWLEDGEMENTS ==
 
 The Salsa20 stream cipher was invented by Daniel J. Bernstein; the
 implementation used in the libmormegil::S20prng C++ class is based on DJB's
-public domain reference implementation.
+public domain reference implementation. If you want to use it for any
+application involving ''actual cryptography'', please go directly to his
+website rather than trusting my transcription of his algorithms.
 
-== VERSION NUMBERING 
+== VERSION NUMBERING  ==
 libmormegil's version number uses the format x.y.z with the following
 meanings:
 
@@ -37,24 +39,27 @@ If you want the official version of libmormegil to use ELF symbol versioning,
 ask nicely and offer to pay me consultancy rates. (I will probably still say
 "no".)
 
-== CONTRIBUTION POLICY
+== CONTRIBUTION POLICY ==
 
 Copyright assignment is neither required nor desired.
 
 Contributions are accepted only under the terms of the BSD licence used on the
 existing code.
 
-== DO NOT REQUEST
+== DO NOT REQUEST ==
 
-Things not to submit:
+=== Things not to submit ===
 
 * Patches that depend on recursive make. '''Everything''' is built using
   the top-level Makefile.
 
-* Patches that depend on GNU autotools.
+* Patches that depend on GNU autotools or other such things.
 
-Things not to request (but feel free to submit patches to provide, on the
-understanding that if they break, I'm not going to fix them):
+=== Things not to request ===
+
+Items on this list will not be done by me. Feel free to submit patches to
+provide, on the understanding that if they break, I'm not likely to bother
+fixing them:
 
 * Support for building under Your Favourite GUI Tool
 
