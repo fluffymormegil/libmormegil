@@ -95,33 +95,36 @@ namespace libmormegil
         }
         void runstate()
         {
-                state[0] = Fixed1;
-                state[1] = key[0];
-                state[2] = key[1];
-                state[3] = key[2];
-                state[4] = key[3];
-                state[5] = Fixed2;
-                state[6] = nonce[0];
-                state[7] = nonce[1];
-                state[8] = counter;
-                state[9] = counter >> 32;
-                state[10] = Fixed3;
-                state[11] = key[4];
-                state[12] = key[5];
-                state[13] = key[6];
-                state[14] = key[7];
-                state[15] = Fixed4;
-                slash(12);
+            state[0] = Fixed1;
+            state[1] = key[0];
+            state[2] = key[1];
+            state[3] = key[2];
+            state[4] = key[3];
+            state[5] = Fixed2;
+            state[6] = nonce[0];
+            state[7] = nonce[1];
+            state[8] = counter;
+            state[9] = counter >> 32;
+            state[10] = Fixed3;
+            state[11] = key[4];
+            state[12] = key[5];
+            state[13] = key[6];
+            state[14] = key[7];
+            state[15] = Fixed4;
+            slash(12);
         }
         uint32_t generate()
         {
+            uint32_t ret;
             if (!subcounter)
             {
                 runstate();
                 ++counter;
             }
+            ret = state[subcounter];
             ++subcounter;
             subcounter &= 15;
+            return ret;
         }
         void initialize(const uint32_t *k, const uint32_t *n,
                         const uint64_t *c, const int *s)
