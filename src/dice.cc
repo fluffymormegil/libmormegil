@@ -55,23 +55,12 @@ extern "C" int dice(int count, int sides)
 
 extern "C" void dice_setstate(const uint32_t *key, const uint32_t *nonce, const uint64_t *counter, const int *subcounter)
 {
-    dice_generator.counter = *counter;
-    memcpy(dice_generator.key, key, 8 * sizeof(uint32_t));
-    memcpy(dice_generator.nonce, nonce, 2 * sizeof(uint32_t));
-    dice_generator.subcounter = (*subcounter) & 15;
-    if (dice_generator.subcounter != 0)
-    {
-        /* if the subcounter wasn't zero, the generator will DTwrongT. */
-        dice_generator.runstate();
-    }
+    dice_generator.initialize(key, nonce, counter, subcounter);
 }
 
 extern "C" void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter, int *subcounter)
 {
-    memcpy(key, dice_generator.key, 8 * sizeof(uint32_t));
-    memcpy(dice_generator.nonce, nonce, 2 * sizeof(uint32_t));
-    *subcounter = dice_generator.subcounter;
-    *counter = dice_generator.counter;
+    dice_generator.extract_state(key, nonce, counter, subcounter);
 }
 
 // vim:ts=8:sw=4:expandtab:fo=cq

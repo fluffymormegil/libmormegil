@@ -123,6 +123,35 @@ namespace libmormegil
             ++subcounter;
             subcounter &= 15;
         }
+        void initialize(const uint32_t *k, const uint32_t *n,
+                        const uint64_t *c, const int *s)
+        {
+            int i;
+            for (i = 0; i < 8; ++i)
+            {
+                key[i] = k[i];
+            }
+            nonce[0] = n[0];
+            nonce[1] = n[1];
+            counter = *c;
+            subcounter = (*s) & 15;
+            if (subcounter)
+            {
+                runstate();
+            }
+        }
+        void extract_state(uint32_t *k, uint32_t *n, uint64_t *c, int *s) const
+        {
+            int i;
+            for (i = 0; i < 8; ++i)
+            {
+                k[i] = key[i];
+            }
+            n[0] = nonce[0];
+            n[1] = nonce[1];
+            *c = counter;
+            *s = subcounter;
+        }
     };
 }
 #endif
