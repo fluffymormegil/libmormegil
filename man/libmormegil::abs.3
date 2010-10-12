@@ -1,0 +1,25 @@
+.TH "LIBMORMEGIL::ABS" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::abs \- compute absolute value
+.SH SYNOPSIS
+#include <libmormegil/abs.hh>
+
+template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
+
+.SH DESCRIPTION
+.I libmormegil::abs
+is a simple implementation of the mathematical "absolute value" function,
+written for libmormegil because the C++ standard library provides only
+floating point (via <cmath> / <math.h>) or complex (via <complex>)
+implementations of this function.
+
+.SH CAVEATS
+
+Implemented as naively as possible.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3), libmormegil::S20prng(3)

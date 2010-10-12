@@ -1,0 +1,78 @@
+.TH "LIBMORMEGIL::S20PRNG" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::S20prng \- a pseudorandom number generator using Salsa20/12
+.SH SYNOPSIS
+#include <stdint.h>
+
+#include <libmormegil/S20prng.hh>
+
+uint32_t libmormegil::S20prng::generate();
+
+void libmormegil::S20prng::initialize(const uint32_t *k, const uint32_t *n, const uint64_t *c, const int *s);
+
+void libmormegil::S20prng::extract_state(uint32_t *k, uint32_t *n, uint64_t *c, int *s);
+
+.SH DESCRIPTION
+.I libmormegil::S20prng
+is a pseudorandom number generator class using the Salsa20/12
+stream cipher's keystream generator to generate 32-bit unsigned integer
+values in the range 0 .. (2^32)-1.
+
+.SH USAGE
+Allocate an instance of the \fIlibmormegil::S20prng\fR class either statically
+or dynamically.
+
+Use the \fIinitialize\fR member function to set up the initial state of the
+generator, and to restore a saved state. The arguments to this function are,
+respectively:
+
+.IP k 4
+A pointer to a 256-bit key stored as an array of eight 32-bit unsigned
+integers.
+
+.IP n 4
+A pointer to a 64-bit "nonce" (initialization vector) stored as an array of
+two 32-bit unsigned integers.
+
+.IP c 4
+A pointer to a 64-bit stream offset stored as a single 64-bit unsigned
+integer.
+
+.IP s 4
+A pointer to a within-frame offset, stored as an integer. (This is mostly
+important for applications which wish to exactly restore a saved state of the
+generator.)
+
+.PP
+Applications which need to take a snapshot of the generator's internal state
+for whatever reason should use the 
+
+Obtaining suitable initialization data for the generator is the application
+author's responsibility. See the file \fBexamples/S20prng-test.cc\fR in the
+library source code distribution for an example using Linux's \fB/dev/urandom\fR
+non-blocking quasi-random number generator device. This should be more or less
+directly portable to other Unix platforms (possibly substituting
+the \fB/dev/random\fR device for \fB/dev/urandom\fR).
+
+.SH CAVEATS
+
+The author is not Daniel Bernstein. Do not take the author's word for it that
+libmormegil::S20prng is a correct implementation of the Salsa20/12 stream
+cipher's keystream generator.
+
+If you want more than 2^32 possible initial states for your S20prng objects,
+you will need to find a source of more than 32 bits of initialization data.
+
+There is no built-in thread-safety on libmormegil::S20prng objects.
+Thread-safe use of libmormegil::S20prng requires the application developer to
+implement their own access control strategy.
+
+There is no safety checking of the pointers passed to the \fIinitialize\fR
+and \fIextract_state\fR member functions.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3), dice(3)
