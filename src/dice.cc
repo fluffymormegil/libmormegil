@@ -33,6 +33,7 @@
 
 libmormegil::S20prng dice_generator;
 
+/* No, this doesn't check whether you've initialized the generator. */
 extern "C" int dice(int count, int sides)
 {
     int value = 0;
