@@ -31,6 +31,7 @@ if ($datarootdir eq '') { $datarootdir = "${prefix}/share"; }
 if ($mandir eq '') { $mandir = "${datarootdir}/man"; }
 if ($man3dir eq '') { $man3dir = "${mandir}/man3"; }
 if ($docdir eq '') { $docdir = "${datarootdir}/doc/libmormegil"; }
+if ($includedir eq $oldincludedir) { $oldincludedir = ''; }
 
 print "Writing dirs.mk...\n" if $verbose;
 open(DIRS_MK, '>', "dirs.mk") or die $!;
