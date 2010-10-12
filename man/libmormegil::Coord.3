@@ -1,0 +1,46 @@
+.TH "LIBMORMEGIL::S20PRNG" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::basic_offset, libmormegil::basic_coord \- offsets and points on a plane
+.SH SYNOPSIS
+#include <libmormegil/Coord.hh>
+
+.SH DESCRIPTION
+.I libmormegil::basic_offset
+is a template type for representing vectors on a two-dimensional plane. These
+can be added, subtracted, etc.
+
+The member functions \fIlength_taxi\fP and \fIlength_inf\fP return the
+magnitude of the vector under the L_1 (aka "Manhattan" or "taxicab") and L_inf
+(aka "Chebyshev" or "chessboard") metrics, respectively.  The member
+function \fIlengthsq\fP returns the square of the magnitude of the vector
+under the Euclidean metric.
+
+.I libmormegil::basic_coord
+is a template type for representing points on a two-dimensional plane. They
+cannot be added together, and the result of subtracting one from another is
+an object of corresponding basic_offset type. Addition or subtraction of a
+basic_offset to/from a basic_coord yields another basic_coord. 
+
+The member functions \fIdist_taxi\fP and \fIdist_inf\fP return the distance
+between two points under the L_1 and L_inf metrics, respectively.
+
+The member function \fIdistsq\fP returns the square of the distance between
+the two points under the Euclidean metric.
+
+The member functions \fIsize_taxi\fP and \fIsize_inf\fP return the distance
+of a point from the origin under the L_1 and L_inf metrics, respectively.
+
+The member function \fIsizesq\fP returns the square of the distance of a
+point from the origin under the Euclidean metric.
+
+Typedefs \fIlibmormegil::Coord\fR and \fIlibmormegil::Offset\fR are provided
+which use type \fIint\fR as the template parameter.
+
+.SH CAVEATS
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3), dice(3)
