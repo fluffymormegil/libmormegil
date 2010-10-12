@@ -26,8 +26,8 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-// We need std::max<>, std::min<>. The thing called std::abs<> is in <complex>
-// and is intended for use on complex numbers; dude what the fuck?
+// We need std::max<> and std::min<>. The thing called std::abs<> is in
+// <complex> and is intended for use on complex numbers; dude what the fuck?
 
 #ifndef libmormegil_Coord_hh
 #define libmormegil_Coord_hh
@@ -39,6 +39,10 @@
 
 namespace libmormegil
 {
+    /* Yes, the basic_offset and basic_coord templates do indeed look very
+       similar. They are kept distinct, however, as what one might choose
+       to call an "insurance policy" - you can't add basic_coord objects
+       together. */
     template<typename T> struct basic_offset
     {
         typedef basic_offset<T>& ref;
@@ -59,7 +63,16 @@ namespace libmormegil
             return *this;
         }
 
-        int length_inf() { return std::min(std::abs(y), std::abs(x)); }
+        ref operator *=(const basic_offset<T>& right)
+        {
+            y *= right.y;
+            x *= right.x;
+            return *this;
+        }
+
+        int length_taxi() { return abs(y) + abs(x); }
+        int lengthsq() { return y * y + x * x; }
+        int length_inf() { return std::min(abs(y), abs(x)); }
     };
 
     template<typename T> struct basic_coord
@@ -80,10 +93,41 @@ namespace libmormegil
             x -= right.x;
             return *this;
         }
+        ref operator *=(const basic_offset<T>& right)
+        {
+            y *= right.y;
+            x *= right.x;
+            return *this;
+        }
         basic_offset<T> operator -(const_ref right) const
         {
             basic_offset<T> tmp = { y - right.y, x - right.x };
             return tmp;
+        }
+        int dist_taxi(const_ref right) const
+        {
+            return abs(y - right.y) + abs(x - right.x);
+        }
+        int distsq(const_ref right) const
+        {
+            return ((y - right.y) * (y - right.y) +
+                    (x - right.x) * (x - right.x));
+        }
+        int dist_inf(const_ref right) const
+        {
+            return std::max(abs(y - right.y), abs(x - right.x));
+        }
+        int size_taxi() const
+        {
+            return abs(y) + abs(x);
+        }
+        int sizesq() const
+        {
+            return y * y + x * x;
+        }
+        int size_inf() const
+        {
+            return std::max(abs(y), abs(x));
         }
     };
 
