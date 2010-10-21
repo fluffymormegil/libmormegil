@@ -1,0 +1,22 @@
+.TH "LIBMORMEGIL::SERIAL" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::serialize, libmormegil::deserialize \- offsets and points on a plane
+.SH SYNOPSIS
+#include <libmormegil/serial.hh>
+
+.SH DESCRIPTION
+.I libmormegil::serialize
+is a family of overloaded functions providing host-endianness-independent
+serialization for basic integer types and the coordinate/offset types provided
+in \fIlibmormegil/Coord.hh\fP
+
+.SH CAVEATS
+
+These functions are not templatized.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3), dice(3)
