@@ -32,6 +32,7 @@
 #ifndef libmormegil_Coord_hh
 #define libmormegil_Coord_hh
 #include <algorithm>
+#include <stdint.h>
 
 #ifndef libmormegil_abs_hh
 #include <libmormegil/abs.hh>
@@ -70,6 +71,21 @@ namespace libmormegil
             return *this;
         }
 
+        bool operator <(const basic_offset<T>& right) const
+        {
+            return (y < right.y) || ((y == right.y) && (x < right.x));
+        }
+
+        bool operator ==(const basic_offset<T>& right) const
+        {
+            return (y == right.y) && (x == right.x);
+        }
+
+        bool operator >(const basic_offset<T>& right) const
+        {
+            return (y > right.y) || ((y == right.y) && (x > right.x));
+        }
+
         int length_taxi() { return abs(y) + abs(x); }
         int lengthsq() { return y * y + x * x; }
         int length_inf() { return std::min(abs(y), abs(x)); }
@@ -104,6 +120,21 @@ namespace libmormegil
             basic_offset<T> tmp = { y - right.y, x - right.x };
             return tmp;
         }
+        bool operator <(const_ref right) const
+        {
+            return (y < right.y) || ((y == right.y) && (x < right.x));
+        }
+
+        bool operator ==(const_ref right) const
+        {
+            return (y == right.y) && (x == right.x);
+        }
+
+        bool operator >(const_ref right) const
+        {
+            return (y > right.y) || ((y == right.y) && (x > right.x));
+        }
+
         int dist_taxi(const_ref right) const
         {
             return abs(y - right.y) + abs(x - right.x);
@@ -131,8 +162,10 @@ namespace libmormegil
         }
     };
 
-    typedef basic_offset<int> Offset;
-    typedef basic_coord<int> Coord;
+    typedef basic_offset<int32_t> Offset;
+    typedef basic_coord<int32_t> Coord;
+    typedef basic_offset<int64_t> Offset64;
+    typedef basic_coord<int64_t> Coord64;
 }
 #endif // libmormegil_Coord_hh
 
