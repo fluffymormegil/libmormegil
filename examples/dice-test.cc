@@ -39,6 +39,8 @@ uint32_t nonce[2];
 int main()
 {
     int fd;
+    /* INITIALIZATION: Open the system (pseudo-)random number generator
+     * device. */
     fd = open("/dev/urandom", O_RDONLY, 0);
     if (fd < 0)
     {
@@ -51,16 +53,22 @@ int main()
     uint64_t counter = 0;
     int rolls[11];
 
+    /* INITIALIZATION: Read data to use as the "key" and "nonce" from the
+     * file descriptor previously obtained. */
     read(fd, keybuf, sizeof keybuf);
     read(fd, nonce, sizeof nonce);
+    /* INITIALIZATION: Load the generator. */
     dice_setstate(keybuf, nonce, &counter, &i);
+    /* INITIALIZATION: Clear the "rolls" array. */
     for (i = 0; i < 11; ++i)
     {
         rolls[i] = 0;
     }
+    /* Roll 2d6 a million times and record the results. */
     for (i = 0; i < 1000000; ++i)
     {
         testroll = dice(2, 6);
+        /* Bounds-check the result */
         if ((testroll < 2) || (testroll > 12))
         {
             fprintf(stderr, "S20prng-test: FAIL: 2d6 roll came up %d\n", testroll);
@@ -68,6 +76,21 @@ int main()
         }
         rolls[testroll - 2]++;
     }
+    /* Print out the results. You'll notice that this doesn't actually test
+     * the randomness of the results, just lets you visually inspect the
+     * distribution. For reference, the ideal distribution is roughly: 
+     *    2:  27777
+     *    3:  55555
+     *    4:  83333
+     *    5: 111111
+     *    6: 138888
+     *    7: 166666
+     *    8: 138888
+     *    9: 111111
+     *   10:  83333
+     *   11:  55555
+     *   12:  27777
+     */
     for (i = 0; i < 11; ++i)
     {
         printf("%d: %d times\n", i + 2, rolls[i]);
