@@ -34,8 +34,8 @@
 #include <algorithm>
 #include <stdint.h>
 
-#ifndef libmormegil_abs_hh
-#include <libmormegil/abs.hh>
+#ifndef libmormegil_mathops_hh
+#include <libmormegil/mathops.hh>
 #endif
 
 namespace libmormegil
