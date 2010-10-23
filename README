@@ -1,0 +1,65 @@
+libmormegil is a collection of library functions and C++ classes intended for
+use in various projects that I host on github under the name fluffymormegil.
+It is released under the BSD licence (for reasons including "I'm not convinced
+that the GNU LGPL has the effect I desire when applied to C++ templates").
+
+== INSTALLATION ==
+
+If you want to set up a system-wide installation,
+
+        ./configure && make all && sudo make install
+
+should do the trick. If it doesn't, let me know what platform you're on and
+how to fix the issue.
+
+== ACKNOWLEDGEMENTS ==
+
+The Salsa20 stream cipher was invented by Daniel J. Bernstein; the
+implementation used in the libmormegil::S20prng C++ class is based on DJB's
+public domain reference implementation. If you want to use it for any
+application involving ''actual cryptography'', please go directly to his
+website rather than trusting my transcription of his algorithms.
+
+== VERSION NUMBERING  ==
+libmormegil's version number uses the format x.y.z with the following
+meanings:
+
+* X is the major version; this is presented as part of the shared library's
+  soname, and provides guarantees about API/ABI compatibility.
+
+* Y is the minor version.
+
+* Z if the backwards-compatibility count. By libmormegil policy, this is
+  '''always''' exactly zero.
+
+If the library does something contrary to what the documentation states, 
+both are wrong. The nature of the fix will depend on what the difference is.
+
+If you want the official version of libmormegil to use ELF symbol versioning,
+ask nicely and offer to pay me consultancy rates. (I will probably still say
+"no".)
+
+== CONTRIBUTION POLICY ==
+
+Copyright assignment is neither required nor desired.
+
+Contributions are accepted only under the terms of the BSD licence used on the
+existing code.
+
+== DO NOT REQUEST ==
+
+=== Things not to submit ===
+
+* Patches that depend on recursive make. '''Everything''' is built using
+  the top-level Makefile.
+
+* Patches that depend on GNU autotools or other such things.
+
+=== Things not to request ===
+
+Items on this list will not be done by me. Feel free to submit patches to
+provide, on the understanding that if they break, I'm not likely to bother
+fixing them:
+
+* Support for building under Your Favourite GUI Tool
+

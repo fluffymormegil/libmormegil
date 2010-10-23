@@ -1,0 +1,10 @@
+a.out
+*.o
+*.so.*
+*.so
+*.tar
+*.gz
+*.tgz
+.*.sw?
+dirs.mk
+libmormegil-1.0.0/*
