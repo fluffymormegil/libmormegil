@@ -2,9 +2,9 @@
 .SH NAME
 libmormegil::abs \- compute absolute value
 .SH SYNOPSIS
-#include <libmormegil/abs.hh>
+#include <libmormegil/mathops.hh>
 
-template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
+template<typename T> T libmormegil::abs(const T& i);
 
 .SH DESCRIPTION
 .I libmormegil::abs
@@ -13,13 +13,18 @@ written for libmormegil because the C++ standard library provides only
 floating point (via <cmath> / <math.h>) or complex (via <complex>)
 implementations of this function.
 
+.SH RETURNS
+
+The absolute value (magnitude) of \fIi\fP.
+
 .SH CAVEATS
 
-Implemented as naively as possible.
+Implemented as naively as possible. Breaks horribly if type T has exotic
+behaviour for its lessthan or unary minus operators.
 
 .SH AUTHOR
 Martin Read <mpread@chiark.greenend.org.uk>
 
 .SH SEE ALSO
 
-libmormegil(3), libmormegil::S20prng(3)
+libmormegil(3)
