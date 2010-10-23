@@ -1,0 +1,27 @@
+
+.TH "LIBMORMEGIL::STLPRINTF" 3 "October 23, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::stlprintf, libmormegil::vstlprintf \- sprintf-alikes for std::string
+.SH SYNOPSIS
+#include <libmormegil/stlprintf.hh>
+
+.SH DESCRIPTION
+The \fIlibmormegil::stlprintf\fP and \fIlibmormegil::vstlprintf\fP functions
+are equivalent to the standard C library's \fIsprintf\fP and \fIvsprintf\fP
+functions, but operate on the standard C++ library's \fIstd::string\fP class
+rather than on C-style strings.
+
+.SH CAVEATS
+
+These functions resolve down to a call to the local implementation of vsprintf.
+All bugs, health hazards, and other concerns which apply to the local vsprintf
+apply to
+
+.SH AUTHOR
+Stefan O'Rear
+
+Amendments were made by Martin Read in order to fit into libmormegil.
+
+.SH SEE ALSO
+
+libmormegil(3), vsprintf(3)
