@@ -1,4 +1,4 @@
-// libmormegil/abs.hh
+// libmormegil/mathops.hh
 //
 // Copyright 2010 Martin Read. All rights reserved.
 // 
@@ -26,13 +26,27 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#ifndef libmormegil_abs_hh
-#define libmormegil_abs_hh
+#ifndef libmormegil_mathops_hh
+#define libmormegil_mathops_hh
 
 namespace libmormegil
 {
-    inline template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
+    template<typename T> inline T abs(const T& i) { return i < T(0) ? -i : i; }
+    template<typename T> inline T sign(const T& orig)
+    {
+        return (orig != 0) ? ((orig < 0) ? T(-1) : T(1)) : T(0);
+    }
+    // div_up provides an upward-rounding integer divide.
+    // Before you ask: it isn't reasonable to use
+    //      ceil(double(orig) / double(divisor)
+    // because while x86 might allow you to conveniently do to-and-fro
+    // translations between the GPRs and the FPRs, PowerPC (among others)
+    // does not.
+    template<typename T> inline T div_up(T orig, T divisor)
+    {
+        return (orig + (divisor - 1)) / divisor;
+    }
 }
-#endif // libmormegil_abs_hh
+#endif // libmormegil_mathops_hh
 
 // vim:ts=8:sw=4:expandtab:fo=c
