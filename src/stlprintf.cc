@@ -27,6 +27,7 @@
 #define STLPRINTF_CC
 
 #include <stdarg.h>
+#include <stdio.h>
 #include <string>
 #include <libmormegil/stlprintf.hh>
 

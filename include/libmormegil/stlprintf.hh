@@ -1,4 +1,4 @@
-/* stlprintf.hh - (v)sprintf-for-STL-strings for Martin's Dungeon Bash
+/* stlprintf.hh - (v)sprintf-for-STL-strings for libmormegil
  * 
  * Copyright 2009 Martin Read and Stefan O'Rear
  *
@@ -24,12 +24,13 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef STLPRINTF_HH
-#define STLPRINTF_HH
+#ifndef libmormegil_stlprintf_hh
+#define libmormegil_stlprintf_hh
 #include <stdarg.h>
 #include <string>
 
-namespace libmrl
+/* Originally provided for dungeonbash. */
+namespace libmormegil
 {
     extern std::string vstlprintf(const char *fmt, va_list args);
     extern std::string stlprintf(const char *fmt, ...);
