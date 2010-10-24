@@ -11,7 +11,10 @@ LIB_SONAME=libmormegil.so.$(MAJOR_VER)
 LIBMORMEGIL_BUILT=$(LIB_BUILDDIR)/$(LIB_REALNAME)
 LIBOBJS=$(OBJ_BUILDDIR)/dice.o $(OBJ_BUILDDIR)/stlprintf.o
 LIBS=$(LIB_BUILDDIR)/$(LIB_REALNAME)
-MANPAGES=man/dice.3
+MANPAGES=man/dice.3 man/libmormegil.3 man/libmormegil::abs.3 \
+         man/libmormegil::serialize.3 man/libmormegil::Coord.3 \
+         man/libmormegil::stlprintf.3 man/libmormegil::div_up.3 \
+         man/libmormegil::sign.3
 SRCARCH_NAME=libmormegil-$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
 
 # GCC flags
@@ -39,6 +42,7 @@ clean:
 install: install-headers
 	cp $(LIBMORMEGIL_BUILT) $(DESTDIR)$(libdir)/$(LIB_REALNAME)
 	(cd $(DESTDIR)$(libdir) && ln -sf $(LIB_REALNAME) $(LIB_SONAME) )
+	cp $(MANPAGES) $(DESTDIR)$(man3dir)
 
 srcarchive: clean
 	mkdir $(SRCARCH_NAME)
