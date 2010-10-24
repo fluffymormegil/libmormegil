@@ -1,0 +1,26 @@
+.TH "LIBMORMEGIL::SIGN" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::sign \- compute absolute value
+.SH SYNOPSIS
+#include <libmormegil/mathops.hh>
+
+template<typename T> T libmormegil::sign(const T& orig);
+
+.SH DESCRIPTION
+.I libmormegil::sign
+is a naively written template for obtaining the sign of \fIorig\fP.
+
+.SH RETURNS
+1 if \fIorig\fP is positive, 0 if \fIorig\fP is 0, -1 if orig is negative.
+
+.SH CAVEATS
+
+Implemented as naively as possible. Exists because <algorithm> does not
+provide such a feature.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3)
