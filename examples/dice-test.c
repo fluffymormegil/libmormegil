@@ -1,4 +1,4 @@
-// dice-test.cc
+// dice-test.c
 //
 // Copyright 2010 Martin Read. All rights reserved.
 // 
