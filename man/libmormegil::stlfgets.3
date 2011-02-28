@@ -1,0 +1,31 @@
+.TH "LIBMORMEGIL::STLFGETS" 3 "February 25, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::stlfgets, libmormegil::vstlfgets \- fgets-alikes for std::string
+.SH SYNOPSIS
+#include <libmormegil/stlfgets.hh>
+
+int libmormegil::stlfgets(std::string& str, size_t size_suggest,
+                          FILE *fp, size_t hard_size);
+
+.SH DESCRIPTION
+The \fIlibmormegil::stlfgets\fP function clears the contents of \fIstr\fP,
+then reads a line from the FILE object pointed to by \fIfp\fP into \fIstr\fP
+using the same algorithm as described for the standard C library's \fIfgets\fP
+function, up to a maximum of \fIhard_size\fP bytes.
+
+The \fIsize_suggest\fP argument to \fIlibmormegil::stlfgets\fP is an allocation
+control hint, indicating an "expected" size for the line. Once \fIsize_suggest\fP
+bytes have been read from \fIfp\fP, the function will return even if no newline
+has been encountered.
+
+.SH RETURNS
+A return value of 0 indicates that no errors were encountered while reading
+from \fIfp\fP. A return value of -1 indicates that an error occurred while
+reading from \fIfp\fP. See the local documentation for the \fIfgetc\fP
+function for a list of possible \fIerrno\fP values in this case.
+
+.SH AUTHOR
+Martin Read
+
+.SH SEE ALSO
+libmormegil(3), libmormegil::stlprintf(3), fgets(3), fgetc(3)
