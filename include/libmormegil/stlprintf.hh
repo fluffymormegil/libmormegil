@@ -29,7 +29,7 @@
 #include <stdarg.h>
 #include <string>
 
-namespace libmrl
+namespace libmormegil
 {
     extern std::string vstlprintf(const char *fmt, va_list args);
     extern std::string stlprintf(const char *fmt, ...);

@@ -1,5 +1,4 @@
-
-.TH "LIBMORMEGIL::STLPRINTF" 3 "October 23, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
+.TH "LIBMORMEGIL::STLPRINTF" 3 "February 25, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
 .SH NAME
 libmormegil::stlprintf, libmormegil::vstlprintf \- sprintf-alikes for std::string
 .SH SYNOPSIS
@@ -11,11 +10,14 @@ are equivalent to the standard C library's \fIsprintf\fP and \fIvsprintf\fP
 functions, but operate on the standard C++ library's \fIstd::string\fP class
 rather than on C-style strings.
 
-.SH CAVEATS
+.SH RETURNS
+Both functions return a \fIstd::string\fP object containing the formatted
+output.
 
-These functions resolve down to a call to the local implementation of vsprintf.
-All bugs, health hazards, and other concerns which apply to the local vsprintf
-apply to
+.SH CAVEATS
+These functions are wrapped around your system's local implementation of
+vsprintf.  All bugs, health hazards, and other concerns which apply to the
+local vsprintf apply to these functions as well.
 
 .SH AUTHOR
 Stefan O'Rear
@@ -23,5 +25,4 @@ Stefan O'Rear
 Amendments were made by Martin Read in order to fit into libmormegil.
 
 .SH SEE ALSO
-
 libmormegil(3), vsprintf(3)
