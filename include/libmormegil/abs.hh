@@ -31,7 +31,10 @@
 
 namespace libmormegil
 {
-    inline template<typename T> T abs(const T& i) { i < T(0) ? -i : i; }
+    template<typename T> inline T abs(const T& i)
+    {
+        i < T(0) ? -i : i;
+    }
 }
 #endif // libmormegil_abs_hh
 
