@@ -13,7 +13,7 @@ LIB_REALNAME=libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
 LIB_SONAME=libmormegil.so.$(MAJOR_VER)
 LIB_SHORTNAME=libmormegil.so
 LIBMORMEGIL_BUILT=$(LIB_BUILDDIR)/$(LIB_REALNAME)
-LIBOBJS=$(OBJ_BUILDDIR)/dice.o $(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlfgets.o
+LIBOBJS=$(OBJ_BUILDDIR)/dice.o $(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/points.o
 LIBS=$(LIB_BUILDDIR)/$(LIB_REALNAME)
 MANPAGES=man/dice.3
 SRCARCH_NAME=libmormegil-$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
@@ -30,7 +30,7 @@ CXXFLAGS=$(COMMON_FLAGS)
 LINKSTEP_FLAGS=-shared -fPIC
 CFLAGS=$(COMMON_FLAGS)
 
-.PHONY: all clean install install-headers srcarchive
+.PHONY: all clean install install-headers install-libs srcarchive
 
 all: $(LIBS)
 
@@ -47,7 +47,9 @@ clean:
 	-rm -f $(LIBS) $(LIBOBJS)
 	-rm -rf $(SRCARCH_NAME) $(SRCARCH_NAME).tar.gz
 
-install: install-headers
+install: install-headers install-libs
+
+install-libs:
 	cp $(LIBMORMEGIL_BUILT) $(DESTDIR)$(libdir)/$(LIB_REALNAME)
 	(cd $(DESTDIR)$(libdir) && ln -sf $(LIB_REALNAME) $(LIB_SONAME) && ln -sf $(LIB_SONAME) $(LIB_SHORTNAME) )
 
