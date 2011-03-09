@@ -1,0 +1,20 @@
+.TH "LIBMORMEGIL::DIVUP" 3 "March 1, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::divup, \- divide and round up
+.SH SYNOPSIS
+#include <libmormegil/divup.hh>
+
+template <typename T> T libmormegil::divup(const T& i, const T& j);
+
+.SH DESCRIPTION
+The \fIlibmormegil::divup\fP function returns the value of \fIi\fP divided
+by \fIj\fP, rounded \fIup\fP (rather than down, as integer division behaves
+by default).
+
+Its behaviour on floating-point types will not be as desired.
+
+.SH AUTHOR
+Martin Read
+
+.SH SEE ALSO
+libmormegil(3)
