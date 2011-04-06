@@ -1,33 +1,13 @@
 // libmormegil/Coord.hh
 //
-// Copyright 2010 Martin Read. All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions
-// are met:
-// 1. Redistributions of source code must retain the above copyright
-//    notice, this list of conditions and the following disclaimer.
-// 2. Redistributions in binary form must reproduce the above copyright
-//    notice, this list of conditions and the following disclaimer in the
-//    documentation and/or other materials provided with the distribution.
-// 3. Neither the name of the author nor the names of any other contributors
-//    may be used to endorse or promote products derived from this software
-//    without their specific prior written permission.
-// 
-// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
-// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-// SUCH DAMAGE.
+// In jurisdictions where this file would be adjuged to contain copyrightable
+// material, it is copyright 2011 Martin Read, and released to the public
+// under the terms of the Creative Commons Public Domain Dedication (cc-0).
+// It is provided without any warranty, express or implied.
 
 // We need std::max<> and std::min<>. The thing called std::abs<> is in
-// <complex> and is intended for use on complex numbers; dude what the fuck?
+// <complex> and is intended for use on complex numbers only; did I mention I
+// hate the standards committee sometimes?
 
 #ifndef libmormegil_Coord_hh
 #define libmormegil_Coord_hh
@@ -40,10 +20,10 @@
 
 namespace libmormegil
 {
-    /* Yes, the basic_offset and basic_coord templates do indeed look very
-       similar. They are kept distinct, however, as what one might choose
-       to call an "insurance policy" - you can't add basic_coord objects
-       together. */
+    // Yes, the basic_offset and basic_coord templates do indeed look very
+    // similar. They are kept distinct, however, as what one might choose
+    // to call an "insurance policy" - you can't add two basic_coord objects
+    // together.
     template<typename T> struct basic_offset
     {
         typedef basic_offset<T>& ref;
@@ -169,4 +149,4 @@ namespace libmormegil
 }
 #endif // libmormegil_Coord_hh
 
-// vim:ts=8:sw=4:expandtab:fo=c
+// vim:ts=8:sw=4:expandtab:fo=croq
