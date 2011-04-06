@@ -1,0 +1,8 @@
+==Known bugs in libmormegil==
+
+* Bug 1.0.0001: The libmormegil::divup template function has no range checks and is not protected against the use of floating point types.
+
+==Bugs fixed in this version==
+
+==Bugs fixed in past versions==
+
