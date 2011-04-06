@@ -11,7 +11,13 @@ The \fIlibmormegil::divup\fP function returns the value of \fIi\fP divided
 by \fIj\fP, rounded \fIup\fP (rather than down, as integer division behaves
 by default).
 
-Its behaviour on floating-point types will not be as desired.
+Its behaviour is undefined when the / operator of type \fIT\fP does not behave
+like rounding-down integer division, or when \fIj\fP is negative, is undefined.
+
+.SH BUGS
+
+This function does not range-check its arguments and is not protected against
+run-time division by zero.
 
 .SH AUTHOR
 Martin Read

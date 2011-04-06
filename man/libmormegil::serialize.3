@@ -2,7 +2,50 @@
 .SH NAME
 libmormegil::serialize, libmormegil::deserialize \- offsets and points on a plane
 .SH SYNOPSIS
+#include <stdio.h>
+
 #include <libmormegil/serial.hh>
+
+int libmormegil::serialize(FILE *fp, const int64_t *data);
+
+int libmormegil::serialize(FILE *fp, const int32_t *data);
+
+int libmormegil::serialize(FILE *fp, const int16_t *data);
+
+int libmormegil::serialize(FILE *fp, const uint64_t *data);
+
+int libmormegil::serialize(FILE *fp, const uint32_t *data);
+
+int libmormegil::serialize(FILE *fp, const uint16_t *data);
+
+int libmormegil::serialize(FILE *fp, Coord const *data);
+
+int libmormegil::serialize(FILE *fp, Coord64 const *data);
+
+int libmormegil::serialize(FILE *fp, Offset const *data);
+
+int libmormegil::serialize(FILE *fp, Offset64 const *data);
+
+int libmormegil::deserialize(FILE *fp, int64_t *data);
+
+int libmormegil::deserialize(FILE *fp, int32_t *data);
+
+int libmormegil::deserialize(FILE *fp, int16_t *data);
+
+int libmormegil::deserialize(FILE *fp, uint64_t *data);
+
+int libmormegil::deserialize(FILE *fp, uint32_t *data);
+
+int libmormegil::deserialize(FILE *fp, uint16_t *data);
+
+int libmormegil::deserialize(FILE *fp, Coord *data);
+
+int libmormegil::deserialize(FILE *fp, Coord64 *data);
+
+int libmormegil::deserialize(FILE *fp, Offset *data);
+
+int libmormegil::deserialize(FILE *fp, Offset64 *data);
+
 
 .SH DESCRIPTION
 .I libmormegil::serialize
@@ -19,4 +62,4 @@ Martin Read <mpread@chiark.greenend.org.uk>
 
 .SH SEE ALSO
 
-libmormegil(3), dice(3)
+libmormegil(3), dice(3), libmormegil::Coord(3)

@@ -1,0 +1,24 @@
+.TH "LIBMORMEGIL::APPCFG" 3 "February 25, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::Appcfg \- key-value application configuration storage
+
+.SH SYNOPSIS
+#include <libmormegil/Appcfg.hh>
+
+.SH DESCRIPTION
+The \fIlibmormegil::Appcfg\fP class provides a key-value store supporting distinct
+boolean, integer, and string types.
+
+A new \fIAppcfg\fP object has no registered variables. 
+
+.SH RETURNS
+A return value of 0 indicates that no errors were encountered while reading
+from \fIfp\fP. A return value of -1 indicates that an error occurred while
+reading from \fIfp\fP. See the local documentation for the \fIfgetc\fP
+function for a list of possible \fIerrno\fP values in this case.
+
+.SH AUTHOR
+Martin Read
+
+.SH SEE ALSO
+libmormegil(3)

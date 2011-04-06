@@ -10,10 +10,21 @@ consists of a shared library and its associated header files, used by
 games written by Martin Read. Please refer to the manual pages for individual
 subsystems to learn more.
 
+Please note that most of libmormegil's features only provide C++ APIs. These
+APIs are contained within the \fIlibmormegil\fP namespace and presented using
+header files with an extension of \fI.hh\fP. Where a C API is available for a
+libmormegil subsystem, it has an extension of \fI.h\fP.
+
+Requests for C API entry points to libmormegil's C++ APIs will be considered
+on a case-by-case basis. Currently, the only such entry points are those
+published in the \fIdice.h\fP header (see dice(3) for details).
+
 .SH AUTHOR
 Martin Read <mpread@chiark.greenend.org.uk>
 
 .SH SEE ALSO
-dice(3), libmormegil::S20prng(3)
+dice(3), libmormegil::S20prng(3), libmormegil::abs(3), libmormegil::Appcfg(3),
+libmormegil::Coord(3), libmormegil::stlprintf(3), libmormegil::stlfgets(3),
+libmormegil::serialize(3)
 
 
