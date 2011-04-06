@@ -1,1 +1,2 @@
-This is a placeholder
+This is a placeholder to ensure that pulling out a git tree will give you a
+full set of directories.
