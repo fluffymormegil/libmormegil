@@ -1,7 +1,11 @@
 libmormegil is a collection of library functions and C++ classes intended for
 use in various projects that I host on github under the name fluffymormegil.
-It is released under the BSD licence (for reasons including "I'm not convinced
-that the GNU LGPL has the effect I desire when applied to C++ templates").
+
+The header files describing the APIs of libmormegil are generally distributed
+under the terms of the Creative Commons Public Domain Dedication (cc-0). Where
+a libmormegil API's implementation involves separate source code, the source
+code for that implementation is distributed under a Berkeley-style licence
+(permissive copyright).
 
 == INSTALLATION ==
 
@@ -20,6 +24,9 @@ public domain reference implementation. If you want to use it for any
 application involving ''actual cryptography'', please go directly to his
 website rather than trusting my transcription of his algorithms.
 
+(For that matter, you shouldn't even trust Dan Bernstein's original
+implementations without auditing them yourself.)
+
 == VERSION NUMBERING  ==
 libmormegil's version number uses the format x.y.z with the following
 meanings:
@@ -29,37 +36,53 @@ meanings:
 
 * Y is the minor version.
 
-* Z if the backwards-compatibility count. By libmormegil policy, this is
-  '''always''' exactly zero.
-
-If the library does something contrary to what the documentation states, 
-both are wrong. The nature of the fix will depend on what the difference is.
+* Z if the backwards-compatibility count.
 
 If you want the official version of libmormegil to use ELF symbol versioning,
 ask nicely and offer to pay me consultancy rates. (I will probably still say
 "no".)
 
+== DEFINITION OF A BUG ==
+
+If the library does something contrary to what the documentation states, that
+is effectively two bugs. The fix, however, may only change one of the two.
+
+If a man page documents something that does not exist, that is effectively two
+bugs. The fix will be either "implement the described thing" or "delete the
+offending documentation until the thing is implemented".
+
 == CONTRIBUTION POLICY ==
 
 Copyright assignment is neither required nor desired.
 
-Contributions are accepted only under the terms of the BSD licence used on the
-existing code.
+Contributions are accepted only under the same licensing terms as the existing
+code - cc-0 for header files, BSD licence for code.
 
 == DO NOT REQUEST ==
 
 === Things not to submit ===
 
-* Patches that depend on recursive make. '''Everything''' is built using
-  the top-level Makefile.
+* Patches that cause the library build to depend on the use of recursive make.
+  '''Everything''' in libmormegil proper must be buildable by a non-recursive
+  invocation of ''make all'' in the top-level directory.
 
-* Patches that depend on GNU autotools or other such things.
+* Patches that depend on GNU autotools (or similar).
+
+* Patches whose contents are subject to a propagating licence (e.g. GNU GPL).
+
+* Patches in respect of whose contents you hold a relevant patent, unless you
+  are willing to grant a universal royalty-free licence on that patent to all
+  persons everywhere.
 
 === Things not to request ===
 
 Items on this list will not be done by me. Feel free to submit patches to
-provide, on the understanding that if they break, I'm not likely to bother
+provide them, on the understanding that if they break, I'm not likely to bother
 fixing them:
 
-* Support for building under Your Favourite GUI Tool
+* Support for Your Favourite GUI IDE
+
+* Support for Your Favorite Non-GNU Toolchain
+
+* Support for Your Favorite Operating System
 
