@@ -34,6 +34,7 @@ namespace libmormegil
     private:
         std::map<std::string, Entry> data;
         typedef std::map<std::string, Entry>::iterator data_iterator;
+        typedef std::map<std::string, Entry>::const_iterator data_const_iterator;
     public:
         // registration functions
         bool register_bool(const std::string& name, bool defval = false);
@@ -48,10 +49,10 @@ namespace libmormegil
         bool set(const std::string& name, const std::string& val);
 
         // get functions
-        bool get(const std::string& name, bool& dest);
-        bool get(const std::string& name, int64_t& dest);
+        bool get(const std::string& name, bool& dest) const;
+        bool get(const std::string& name, int64_t& dest) const;
         // for code hygeine reasons, we don't support
-        bool get(const std::string& name, std::string& dest);
+        bool get(const std::string& name, std::string& dest) const;
 
         // dumper function
         int dump(std::list<Entry>& dest);

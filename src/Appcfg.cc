@@ -67,9 +67,9 @@ bool libmormegil::Appcfg::register_string(const std::string& name, const std::st
     data[name] = e;
 }
 
-bool libmormegil::Appcfg::get(const std::string& name, int64_t& val)
+bool libmormegil::Appcfg::get(const std::string& name, int64_t& val) const
 {
-    data_iterator iter = data.find(name);
+    data_const_iterator iter = data.find(name);
     if ((iter != data.end()) && (iter->second.t == Appcfg_integer))
     {
         val = iter->second.ival;
@@ -78,9 +78,9 @@ bool libmormegil::Appcfg::get(const std::string& name, int64_t& val)
     return false;
 }
 
-bool libmormegil::Appcfg::get(const std::string& name, std::string& val)
+bool libmormegil::Appcfg::get(const std::string& name, std::string& val) const
 {
-    data_iterator iter = data.find(name);
+    data_const_iterator iter = data.find(name);
     if ((iter != data.end()) && (iter->second.t == Appcfg_string))
     {
         val = iter->second.sval;
@@ -91,7 +91,7 @@ bool libmormegil::Appcfg::get(const std::string& name, std::string& val)
 
 bool libmormegil::Appcfg::get(const std::string& name, bool& val) const
 {
-    data_iterator iter = data.find(name);
+    data_const_iterator iter = data.find(name);
     if ((iter != data.end()) && (iter->second.t == Appcfg_boolean))
     {
         val = iter->second.bval;
