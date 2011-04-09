@@ -41,7 +41,7 @@ SRCARCH_INC:=$(INC_DIR)/dice.h $(INC_DIR)/isotime.h $(INC_DIR)/Appcfg.hh $(INC_D
 SRCARCH_MAN=man/libmormegil.3 man/dice.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::Points.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::sign.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
 SRCARCH_LIC=CC0 BSD-lite COPYING Copyright
 SRCARCH_EXA=examples/dice-test.c examples/coord-test.cc
-SRCARCH_TOP:=$(SRCARCH_LIC) README changelog version.mk Makefile Bugs
+SRCARCH_TOP:=$(SRCARCH_LIC) README changelog configure version.mk Makefile Bugs
 
 # GCC flags
 #  1. This is a shared library, so we need -fPIC (position-independent code)
@@ -106,7 +106,7 @@ srcarchive: clean
 	touch ./$(SRCARCH_NAME)/obj/placeholder.txt
 	mkdir -p ./$(SRCARCH_NAME)/lib
 	touch ./$(SRCARCH_NAME)/lib/placeholder.txt
-	tar cvf ./$(SRCARCH_NAME).tar.gz ./$(SRCARCH_NAME)
+	tar cvzf ./$(SRCARCH_NAME).tar.gz ./$(SRCARCH_NAME)
 	rm -rf ./$(SRCARCH_NAME)
 
 ifeq ($(oldincludedir),"")
