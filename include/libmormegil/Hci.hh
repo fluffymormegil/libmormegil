@@ -10,6 +10,30 @@
 
 namespace libmormegil
 {
+    class Hci
+    {
+    protected:
+        Hci_tilemode my_tilemode;
+    public:
+        enum Hci_tilemode {
+            Hci_tile_invalid = -1,
+            Hci_tile_wchar,
+            Hci_tile_pixel
+        };
+        Hci() : my_tilemode(Hci_tile_invalid) { }
+        virtual ~Hci() { }
+        Hci_tilemode tilemode() const { return my_tilemode; }
+        // Now for the interesting part of the interface. It's not nearly as
+        // ambitious as I _want_ it to be, but that's because I don't feel 
+        // like writing the elaborate separation mechanisms required.
+        virtual void init() = 0;
+        virtual void cleanup() = 0;
+        virtual void emit_message(const std::string& msg) = 0;
+        virtual void emit_message_decorated(const std::string& msg) = 0;
+        virtual void set_tile(int tile_layer, int tile_id) = 0;
+        virtual int register_tile_data(int layer, void *data) = 0;
+    };
+
 }
 #endif // libmormegil_Hci_hh
 

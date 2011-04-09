@@ -28,6 +28,7 @@
 
 #include <string>
 #include <string.h>
+#include <stdio.h>
 #include <ctype.h>
 #include <time.h>
 #include <libmormegil/isotime.h>

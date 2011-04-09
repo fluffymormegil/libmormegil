@@ -43,11 +43,13 @@ namespace libmormegil
             curr += amount;
             return amount;
         }
-        // gain() is non-inline because it's messy.
-        int32_t gain(int32_t amount, Gain_mode mode);
-        int32_t lose(int32_t amount) { amount = std::max(0, maxval); return amount; }
+        int32_t gain(int32_t amount, Gain_mode mode); // a bit too messy to inline
+        int32_t lose(int32_t amount) { amount = std::max(0, curr); curr -= amount; return amount; }
         int32_t current() const { return curr; }
         int32_t maximum() const { return maxval; }
+        void force_current(int32_t c) { curr = c; }
+        void force_maximum(int32_t m) { m = std::max(0, m); maxval = m; }
+        Points(int32_t mv = 0, int32_t c = 0) : maxval(mv), curr(c) { }
     };
 }
 #endif // libmormegil_Points_hh

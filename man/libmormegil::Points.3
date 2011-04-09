@@ -1,0 +1,61 @@
+.TH "LIBMORMEGIL::POINTS" 3 "April 7, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::Points \- tracker object for hit points or similar
+.SH SYNOPSIS
+#include <libmormegil/Points.hh>
+
+int32_t libmormegil::Points::gain(int32_t amount, libmormegil::Points::Gain_mode mode);
+
+int32_t libmormegil::Points::lose(int32_t amount);
+
+int32_t libmormegil::Points::boost(int32_t amount);
+
+int32_t libmormegil::Points::restore(int32_t amount);
+
+int32_t libmormegil::Points::current() const;
+
+int32_t libmormegil::Points::maximum() const;
+
+void libmormegil::Points::force_current(int32_t c);
+
+void libmormegil::Points::force_maximum(int32_t m);
+
+void libmormegil::Points::Points(int32_t mv = 0, int32_t c = 0);
+
+.SH DESCRIPTION
+.I libmormegil::Points
+is a class for tracking quantities like "hit points" in a game.
+
+The \fIgain\fP member function increases the maximum value by \fIamount\fP
+(but not above 2^31-1), and adjusts the current value according to the mode
+selected by \fImode\fP.  The valid values for \fImode\fP are \fIGain_match\fP
+(current value increases by the same amount as the maximum),
+.I Gain_proportional
+(current value increases in proportion to the increase in the maximum), and
+.I Gain_norestore
+(current value does not change). The return value is the actual change in
+the maximum value.
+
+The \fIlose\fP member function reduces the current value by \fIamount\fP, but
+not below zero. It returns a positive integer with magnitude equal to that of
+the change in the current value.
+
+The \fIrestore\fP member function increases the current value by \fIamount\fP
+but not above the maximum value. It returns the actual change in the current
+value.
+
+The \fIboost\fP member function increases the current value by \fIamount\fP
+but not above 2^31-1. It returns the actual change in the current value.
+
+The \fIcurrent\fP and \fImaximum\fP member functions return the current and
+maximum values, respectively.
+
+The \fIforce_current\fP and \fIforce_maximum\fP set the current and maximum
+value, respectively.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3)

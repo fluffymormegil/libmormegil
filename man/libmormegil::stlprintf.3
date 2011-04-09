@@ -1,8 +1,18 @@
 .TH "LIBMORMEGIL::STLPRINTF" 3 "February 25, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
 .SH NAME
-libmormegil::stlprintf, libmormegil::vstlprintf \- sprintf-alikes for std::string
+libmormegil::stlprintf, libmormegil::vstlprintf, libmormegil::stlwprintf, libmormegil::vstlwprintf \- (v)s(w)printf-alikes for std::string
 .SH SYNOPSIS
 #include <libmormegil/stlprintf.hh>
+
+std::string libmormegil::vstlprintf(const char *fmt, va_list args);
+
+std::string libmormegil::stlprintf(const char *fmt, ...);
+
+#include <libmormegil/stlwprintf.hh>
+
+std::string libmormegil::vstlwprintf(const char *fmt, va_list args);
+
+std::string libmormegil::stlwprintf(const char *fmt, ...);
 
 .SH DESCRIPTION
 The \fIlibmormegil::stlprintf\fP and \fIlibmormegil::vstlprintf\fP functions
@@ -10,19 +20,27 @@ are equivalent to the standard C library's \fIsprintf\fP and \fIvsprintf\fP
 functions, but operate on the standard C++ library's \fIstd::string\fP class
 rather than on C-style strings.
 
+The \fIlibmormegil::stlwprintf\fP and \fIlibmormegil::vstlwprintf\fP functions
+are equivalent to the standard C library's \fIswprintf\fP and \fIvswprintf\fP
+functions, but operate on the standard C++ library's \fIstd::wstring\fP class
+rather than on C-style wide strings.
+
 .SH RETURNS
-Both functions return a \fIstd::string\fP object containing the formatted
-output.
+The object returned is a \fIstd::string\fP or \fIstd::wstring\fP containing
+the formatted output.
 
 .SH CAVEATS
 These functions are wrapped around your system's local implementation of
-vsprintf.  All bugs, health hazards, and other concerns which apply to the
-local vsprintf apply to these functions as well.
+vsprintf or vswprintf.  All bugs, health hazards, and other concerns which
+apply to those functions apply to these functions as well.
 
 .SH AUTHOR
-Stefan O'Rear
+The vstlprintf and stlprintf functions were written by Stefan O'Rear.
 
 Amendments were made by Martin Read in order to fit into libmormegil.
 
+The vstlwprintf and stlwprintf functions were cloned by Martin Read from
+the narrow versions as part of the libmormegil project.
+
 .SH SEE ALSO
-libmormegil(3), vsprintf(3)
+libmormegil(3), vsprintf(3), vswprintf(3)

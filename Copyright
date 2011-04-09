@@ -2,9 +2,11 @@ The copyright disposition of individual files within libmormegil is indicated
 at the top of those files. Persons currently holding copyright to elements of
 libmormegil are:
         Martin Read (all files)
-        Stefan O'Rear (src/stlprintf.cc)
+        Stefan O'Rear (src/stlprintf.cc, src/stlwprintf.cc)
 
 See individual files for licensing terms. In general, header files are
-released under the Creative Commons Public Domain Dedication (cc-0); source
+released under the Creative Commons Public Domain Dedication (CC0); source
 files are released under a BSD-type licence.
 
+The licences used are reproduced in the top-level directory of the source
+distribution.
