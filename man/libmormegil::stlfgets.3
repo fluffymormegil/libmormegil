@@ -1,10 +1,15 @@
-.TH "LIBMORMEGIL::STLFGETS" 3 "February 25, 2011" "libmormegil Version 1.0" "libmormegil User Manual"
+.TH "LIBMORMEGIL::STLFGETS" 3 "April 26, 2011" "libmormegil Version 2.0" "libmormegil User Manual"
 .SH NAME
-libmormegil::stlfgets, libmormegil::vstlfgets \- fgets-alikes for std::string
+libmormegil::stlfgets, libmormegil::stlwfgets \- fgets-alikes for std::string
 .SH SYNOPSIS
 #include <libmormegil/stlfgets.hh>
 
 int libmormegil::stlfgets(std::string& str, size_t size_suggest,
+                          FILE *fp, size_t hard_size);
+
+#include <libmormegil/stlwfgets.hh>
+
+int libmormegil::stlwfgets(std::wstring& str, size_t size_suggest,
                           FILE *fp, size_t hard_size);
 
 .SH DESCRIPTION
@@ -18,14 +23,19 @@ control hint, indicating an "expected" size for the line. Once \fIsize_suggest\f
 bytes have been read from \fIfp\fP, the function will return even if no newline
 has been encountered.
 
+The \fIlibmormegil::stlwfgets\fP function works equivalently, except that the
+argument \fIstr\fP is of type \fIstd::wstring\fP and the results are changed
+accordingly.
+
 .SH RETURNS
 A return value of 0 indicates that no errors were encountered while reading
 from \fIfp\fP. A return value of -1 indicates that an error occurred while
 reading from \fIfp\fP. See the local documentation for the \fIfgetc\fP
-function for a list of possible \fIerrno\fP values in this case.
+and \fIfgetwc\fP functions for a list of possible \fIerrno\fP values in this
+case.
 
 .SH AUTHOR
 Martin Read
 
 .SH SEE ALSO
-libmormegil(3), libmormegil::stlprintf(3), fgets(3), fgetc(3)
+libmormegil(3), libmormegil::stlprintf(3), fgets(3), fgetc(3), fgetwc(3)
