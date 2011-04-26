@@ -1,0 +1,39 @@
+.TH "LIBMORMEGIL::EMIT_CHEBYSHEV_SPIRAL" 3 "April 26, 2011" "libmormegil Version 2.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::emit_chebyshev_spiral \- print out source and header files for a chebyshev-metric spiral
+.SH SYNOPSIS
+#include <libmormegil/srcgen-parts.hh>
+
+void libmormegil::emit_chebyshev_spiral(FILE *srcfile, FILE *hdrfile, unsigned int radius, const char *macrotag, const char *nmsp);
+
+.SH DESCRIPTION
+
+.I libmormegil::emit_chebyshev_spiral
+prints a C++ source file via the \fIFILE\fP object pointed to by \fIsrcfile\fP
+and a C++ header file via the \fIFILE\fP object point to by \fIhdrfile\fP.
+
+These output files describe the steps of a discrete spiral of radius
+.I radius
+under a Chebyshev metric, formatted as an array of (2 * radius + 1)^2 objects
+of type \fIlibmormegil::Offset\fP. The array is named \fIcheby_spiral\fP and
+can optionally be placed into a C++ namespace by passing a non-null pointer to
+a non-empty C-style string as the argument \fInmsp\fP (which is null by
+default). The character string pointed to by \fImacrotag\fP (default:
+"cheby_spiral") is used as part of the include-guard macro string in the
+emitted header file.
+
+.SH CAVEATS
+
+Does not check its inputs. The caller has responsiblity for managing the
+objects pointed to by \fIsrcfile\fP and \fIhdrfile\fP, and for sanitizing the
+strings passed as \fImacrotag\fP and \fInmsp\fP.
+
+If you find yourself wanting a spiral larger than radius 20 or so, you may want
+to re-evaluate the algorithm you were going to use it with.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3)

@@ -1,0 +1,44 @@
+.TH "LIBMORMEGIL::TAGIFY" 3 "April 26, 2011" "libmormegil Version 2.0" "libmormegil User Manual"
+.SH NAME
+libmormegil::tagify \- generate a "tag" string from a name and a prefix
+.SH SYNOPSIS
+#include <libmormegil/srcgen-parts.hh>
+
+std::string * libmormegil::tagify(const char *name, const char *prefix);
+
+.SH DESCRIPTION
+
+.I libmormegil::tagify
+allocates a new \fIstd::string\fP object created from the C-style string
+pointed to by \fIprefix\fP, then appends the characters of \fIname\fP in
+order, transformed as follows:
+
+.IP * 4
+Values outside the range 33-126 are replaced with underscore (ASCII 0x5F)
+.IP * 4
+Decimal digits are unchanged.
+.IP * 4
+Lower-case 'i' (ASCII 0x69) is replaced with upper-case 'I' (ASCII 0x49)
+.IP * 4
+All other characters for which \fIisalpha(3)\fP returns nonzero are replaced
+the result of passing them to \fItoupper(3)\fP.
+.IP * 4
+Any characters not covered by the above are replaced with underscore (ASCII
+0x5F).
+
+.SH CAVEATS
+
+While this function makes a vague attempt to deal with 8-bit encodings, and to
+limit backscatter from the Unicode committee's questionable decisions regarding
+case transformations of the letters I and İ (which mean that if you have mixed
+Turkish and non-Turkish Latin-alphabet text, you cannot safely perform case
+transformations or case-insensitive comparisons!), the tags generated from
+UTF-8 input will not be usable as identifiers in \fIstandards-compliant\fP C or
+C++ programs, as they will contain multiple adjacent underscores.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3)
