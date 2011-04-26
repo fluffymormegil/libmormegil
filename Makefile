@@ -22,7 +22,7 @@ LIBMORMEGIL_SONAME:=libmormegil.so.$(MAJOR_VER)
 LIBMORMEGIL_SHORTNAME=libmormegil.so
 LIBMORMEGIL_STATIC_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_STATIC)
 LIBMORMEGIL_SHARED_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_REALNAME)
-LIBOBJS:=$(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlwprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/points.o $(OBJ_BUILDDIR)/Appcfg.o $(OBJ_BUILDDIR)/ordinaldate.o $(OBJ_BUILDDIR)/dice.o
+LIBOBJS:=$(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlwprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/stlwfgets.o $(OBJ_BUILDDIR)/points.o $(OBJ_BUILDDIR)/Appcfg.o $(OBJ_BUILDDIR)/ordinaldate.o $(OBJ_BUILDDIR)/dice.o
 
 LIBS:=$(LIBMORMEGIL_SHARED_BUILT) $(LIBMORMEGIL_STATIC_BUILT)
 ALL_LIBOBJS:=$(LIBOBJS) $(LIBOBJS_C)
@@ -32,8 +32,8 @@ MANPAGES=man/dice.3 man/libmormegil.3 man/libmormegil::Appcfg.3 man/libmormegil:
 SRCARCH_NAME:=libmormegil-$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
 # The list of what goes in the deliverable source archive. Only subsystems
 # which I deem "ready" get put into the deliverable archive.
-SRCARCH_SRC:=src/Appcfg.cc src/dice.cc src/points.cc src/stlfgets.cc src/ordinaldate.cc src/stlprintf.cc src/stlwprintf.cc
-SRCARCH_INC:=$(INC_DIR)/dice.h $(INC_DIR)/isotime.h $(INC_DIR)/Appcfg.hh $(INC_DIR)/Coord.hh $(INC_DIR)/Points.hh $(INC_DIR)/S20prng.hh $(INC_DIR)/abs.hh $(INC_DIR)/divup.hh $(INC_DIR)/serial.hh $(INC_DIR)/sign.hh $(INC_DIR)/stlfgets.hh $(INC_DIR)/stlprintf.hh $(INC_DIR)/stlwprintf.hh
+SRCARCH_SRC:=src/Appcfg.cc src/dice.cc src/points.cc src/stlfgets.cc src/stlwfgets.cc src/ordinaldate.cc src/stlprintf.cc src/stlwprintf.cc
+SRCARCH_INC:=$(INC_DIR)/dice.h $(INC_DIR)/isotime.h $(INC_DIR)/Appcfg.hh $(INC_DIR)/Coord.hh $(INC_DIR)/Points.hh $(INC_DIR)/S20prng.hh $(INC_DIR)/abs.hh $(INC_DIR)/divup.hh $(INC_DIR)/serial.hh $(INC_DIR)/sign.hh $(INC_DIR)/stlfgets.hh $(INC_DIR)/stlwfgets.hh $(INC_DIR)/stlprintf.hh $(INC_DIR)/stlwprintf.hh
 SRCARCH_MAN=man/libmormegil.3 man/dice.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::Points.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::sign.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
 SRCARCH_LIC=CC0 BSD-lite COPYING Copyright
 SRCARCH_EXA=examples/dice-test.c examples/coord-test.cc
