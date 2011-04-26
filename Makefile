@@ -16,19 +16,15 @@ INC_DIR=include/libmormegil
 # LIB_REALNAME is exact name of the library
 # LIB_SONAME is majorversioned name of the library
 # LIB_SHORTNAME is unversioned name of the library
-LIB_REALNAME:=libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
-LIB_SONAME:=libmormegil.so.$(MAJOR_VER)
-LIB_SHORTNAME=libmormegil.so
-LIBMORMEGIL_BUILT:=$(LIB_BUILDDIR)/$(LIB_REALNAME)
-LIBOBJS:=$(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlwprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/points.o $(OBJ_BUILDDIR)/Appcfg.o $(OBJ_BUILDDIR)/ordinaldate.o
+LIBMORMEGIL_STATIC:=libmormegil.a
+LIBMORMEGIL_REALNAME:=libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
+LIBMORMEGIL_SONAME:=libmormegil.so.$(MAJOR_VER)
+LIBMORMEGIL_SHORTNAME=libmormegil.so
+LIBMORMEGIL_STATIC_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_STATIC)
+LIBMORMEGIL_SHARED_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_REALNAME)
+LIBOBJS:=$(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlwprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/points.o $(OBJ_BUILDDIR)/Appcfg.o $(OBJ_BUILDDIR)/ordinaldate.o $(OBJ_BUILDDIR)/dice.o
 
-LIB_REALNAME_C:=libmormegil_c.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
-LIB_SONAME_C:=libmormegil_c.so.$(MAJOR_VER)
-LIB_SHORTNAME_C:=libmormegil_c.so
-LIBMORMEGIL_BUILT_C:=$(LIB_BUILDDIR)/$(LIB_REALNAME_C)
-LIBOBJS_C:=$(OBJ_BUILDDIR)/dice.o
-
-LIBS:=$(LIB_BUILDDIR)/$(LIB_REALNAME) $(LIB_BUILDDIR)/$(LIB_REALNAME_C)
+LIBS:=$(LIBMORMEGIL_SHARED_BUILT) $(LIBMORMEGIL_STATIC_BUILT)
 ALL_LIBOBJS:=$(LIBOBJS) $(LIBOBJS_C)
 
 MANPAGES=man/dice.3 man/libmormegil.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
@@ -66,11 +62,11 @@ $(OBJ_BUILDDIR)/%.o: src/%.c
 $(OBJ_BUILDDIR)/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(COMMON_FLAGS) -c $< -o $@
 
-$(LIBMORMEGIL_BUILT): $(LIBOBJS)
-	gcc -shared -fPIC -Wl,-soname,$(LIB_SONAME) $^ -o $@
+$(LIBMORMEGIL_SHARED): $(LIBOBJS)
+	gcc $(LINKSTEP_FLAGS) -Wl,-soname,$(LIBMORMEGIL_SONAME) $^ -o $@
 
-$(LIBMORMEGIL_BUILT_C): $(LIBOBJS_C)
-	gcc -shared -fPIC -Wl,-soname,$(LIB_SONAME_C) $^ -o $@
+$(LIBMORMEGIL_STATIC): $(LIBOBJS)
+	ar rcs $@ $^
 
 clean:
 	-rm -f $(LIBS) $(ALL_LIBOBJS)
@@ -81,11 +77,11 @@ distclean: clean
 
 install: install-headers install-libs install-docs
 
-# Note that this does _not_ create symlinks. That's ldconfig's job 
-install-libs: $(LIBMORMEGIL_BUILT) $(LIBMORMEGIL_BUILT_C)
+# Note that this does _not_ create symlinks. That's ldconfig's job.
+install-libs: $(LIBMORMEGIL_SHARED_BUILT)
 	mkdir -p $(DESTDIR)$(libdir)
-	install -m 0755 $(LIBMORMEGIL_BUILT) $(DESTDIR)$(libdir)/$(LIB_REALNAME)
-	install -m 0755 $(LIBMORMEGIL_BUILT_C) $(DESTDIR)$(libdir)/$(LIB_REALNAME_C)
+	install -m 0755 $(LIBMORMEGIL_STATIC_BUILT) $(DESTDIR)$(libdir)/$(LIBMORMEGIL_STATIC)
+	install -m 0755 $(LIBMORMEGIL_SHARED_BUILT) $(DESTDIR)$(libdir)/$(LIBMORMEGIL_REALNAME)
 
 install-docs:
 	mkdir -p $(DESTDIR)$(man3dir)
