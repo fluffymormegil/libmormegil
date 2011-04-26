@@ -58,5 +58,5 @@ int32_t libmormegil::Points::gain(int32_t amount, libmormegil::Points::Gain_mode
     return -1;
 }
 
-// vim:ts=8:sw=4:expandtab:fo=cq
+// vim:ts=8:sw=4:expandtab:fo=croq
 // points.cc

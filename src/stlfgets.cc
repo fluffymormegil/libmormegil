@@ -66,5 +66,5 @@ int libmormegil::stlfgets(std::string& str, FILE *fp, size_t size_suggest, size_
     return ret;
 }
 
-// vim:ts=8:sw=4:expandtab:fo=cq
+// vim:ts=8:sw=4:expandtab:fo=croq
 

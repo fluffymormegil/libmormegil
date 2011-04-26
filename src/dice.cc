@@ -64,5 +64,5 @@ extern "C" void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter,
     dice_generator.extract_state(key, nonce, counter, subcounter);
 }
 
-// vim:ts=8:sw=4:expandtab:fo=cq
+// vim:ts=8:sw=4:expandtab:fo=croq
 

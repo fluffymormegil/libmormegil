@@ -133,5 +133,5 @@ bool libmormegil::Appcfg::set(const std::string& name, bool val)
     return false;
 }
 
-// vim:ts=8:sw=4:expandtab:fo=cq
+// vim:ts=8:sw=4:expandtab:fo=croq
 
