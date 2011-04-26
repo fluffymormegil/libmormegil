@@ -11,6 +11,7 @@
 namespace libmormegil
 {
     int stlfgets(std::string& str, FILE *fp, size_t size_suggest = 128, size_t hard_size = 0x7fffffff);
+    int stlwfgets(std::wstring& str, FILE *fp, size_t size_suggest = 128, size_t hard_size = 0x7fffffff);
 }
 
-// vim:ts=8:sw=4:expandtab:fo=cq
+// vim:ts=8:sw=4:expandtab:fo=croq
