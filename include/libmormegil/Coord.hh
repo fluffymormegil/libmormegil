@@ -44,31 +44,44 @@ namespace libmormegil
             return *this;
         }
 
-        ref operator *=(const basic_offset<T>& right)
+        ref operator *=(const_ref right)
         {
             y *= right.y;
             x *= right.x;
             return *this;
         }
 
-        bool operator <(const basic_offset<T>& right) const
+        basic_offset<T> operator -() const
+        {
+            basic_offset<T> tmp = { -y, -x };
+            return tmp;
+        }
+
+
+        bool operator <(const_ref right) const
         {
             return (y < right.y) || ((y == right.y) && (x < right.x));
         }
 
-        bool operator ==(const basic_offset<T>& right) const
+        bool operator ==(const_ref right) const
         {
             return (y == right.y) && (x == right.x);
         }
 
-        bool operator >(const basic_offset<T>& right) const
+        bool operator !=(const_ref right) const
+        {
+            return (y != right.y) || (x != right.x);
+        }
+
+        bool operator >(const_ref right) const
         {
             return (y > right.y) || ((y == right.y) && (x > right.x));
         }
 
-        int length_taxi() { return abs(y) + abs(x); }
-        int lengthsq() { return y * y + x * x; }
-        int length_inf() { return std::min(abs(y), abs(x)); }
+        int length_taxi() const { return abs(y) + abs(x); }
+        int lengthsq() const { return y * y + x * x; }
+        int length_inf() const { return std::max(abs(y), abs(x)); }
+        bool cardinal() const { return (abs(y) == abs(x)) || (y && !x) || (x && !y); }
     };
 
     template<typename T> struct basic_coord
@@ -110,6 +123,17 @@ namespace libmormegil
             return (y == right.y) && (x == right.x);
         }
 
+        bool operator !=(const_ref right) const
+        {
+            return (y != right.y) || (x != right.x);
+        }
+
+        basic_coord<T> operator -() const
+        {
+            basic_coord<T> tmp = { -y, -x };
+            return tmp;
+        }
+
         bool operator >(const_ref right) const
         {
             return (y > right.y) || ((y == right.y) && (x > right.x));
@@ -141,11 +165,62 @@ namespace libmormegil
             return std::max(abs(y), abs(x));
         }
     };
+    template<typename T> inline basic_coord<T> operator +(const basic_coord<T>& left, const basic_offset<T>& right)
+    {
+        basic_coord<T> tmp = { left.y + right.y, left.x + right.x };
+        return tmp;
+    }
+    template<typename T> inline basic_coord<T> operator -(const basic_coord<T>& left, const basic_offset<T>& right)
+    {
+        basic_coord<T> tmp = { left.y - right.y, left.x - right.x };
+        return tmp;
+    }
 
     typedef basic_offset<int32_t> Offset;
     typedef basic_coord<int32_t> Coord;
     typedef basic_offset<int64_t> Offset64;
     typedef basic_coord<int64_t> Coord64;
+    
+    template<> inline Offset abs<Offset>(const Offset& t)
+    {
+        Offset tmp = { abs(t.y), abs(t.x) };
+        return tmp;
+    }
+    template<> inline Offset64 abs<Offset64>(const Offset64& t)
+    {
+        Offset64 tmp = { abs(t.y), abs(t.x) };
+        return tmp;
+    }
+    template<> inline Coord abs<Coord>(const Coord& t)
+    {
+        Coord tmp = { abs(t.y), abs(t.x) };
+        return tmp;
+    }
+    template<> inline Coord64 abs<Coord64>(const Coord64& t)
+    {
+        Coord64 tmp = { abs(t.y), abs(t.x) };
+        return tmp;
+    }
+    template<> inline Offset sign<Offset>(const Offset& t)
+    {
+        Offset tmp = { sign(t.y), sign(t.x) };
+        return tmp;
+    }
+    template<> inline Offset64 sign<Offset64>(const Offset64& t)
+    {
+        Offset64 tmp = { sign(t.y), sign(t.x) };
+        return tmp;
+    }
+    template<> inline Coord sign<Coord>(const Coord& t)
+    {
+        Coord tmp = { sign(t.y), sign(t.x) };
+        return tmp;
+    }
+    template<> inline Coord64 sign<Coord64>(const Coord64& t)
+    {
+        Coord64 tmp = { sign(t.y), sign(t.x) };
+        return tmp;
+    }
 }
 #endif // libmormegil_Coord_hh
 

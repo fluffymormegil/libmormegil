@@ -62,10 +62,10 @@ $(OBJ_BUILDDIR)/%.o: src/%.c
 $(OBJ_BUILDDIR)/%.o: src/%.cc
 	$(CXX) $(CXXFLAGS) $(COMMON_FLAGS) -c $< -o $@
 
-$(LIBMORMEGIL_SHARED): $(LIBOBJS)
+$(LIBMORMEGIL_SHARED_BUILT): $(LIBOBJS)
 	gcc $(LINKSTEP_FLAGS) -Wl,-soname,$(LIBMORMEGIL_SONAME) $^ -o $@
 
-$(LIBMORMEGIL_STATIC): $(LIBOBJS)
+$(LIBMORMEGIL_STATIC_BUILT): $(LIBOBJS)
 	ar rcs $@ $^
 
 clean:
@@ -110,11 +110,11 @@ install-headers:
 	mkdir -p $(DESTDIR)$(oldincludedir)/libmormegil
 	install -t $(DESTDIR)$(oldincludedir)/libmormegil include/libmormegil/*
 	mkdir -p $(DESTDIR)$(includedir)/libmormegil
-	install -t $(DESTDIR)$(includedir)/libmormegil include/libmormegil/*
+	install -m 0644 -t $(DESTDIR)$(includedir)/libmormegil include/libmormegil/*
 else
 install-headers:
 	mkdir -p $(DESTDIR)$(includedir)/libmormegil
-	install -t $(DESTDIR)$(includedir)/libmormegil include/libmormegil/* 
+	install -m 0644 -t $(DESTDIR)$(includedir)/libmormegil include/libmormegil/* 
 endif
 
 # vim:noexpandtab:fo=croq

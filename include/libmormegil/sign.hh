@@ -9,7 +9,8 @@
 #define libmormegil_sign_hh
 
 namespace libmormegil
-    template<typename T> inline bool sign(const T& i)
+{
+    template<typename T> inline T sign(const T& i)
     {
         return (i < T(0)) ? -1 : (i > T(0)) ? 1 : 0;
     }
