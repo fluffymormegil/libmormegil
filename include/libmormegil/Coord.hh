@@ -28,8 +28,8 @@ namespace libmormegil
     {
         typedef basic_offset<T>& ref;
         typedef const basic_offset<T>& const_ref;
-        int y;
-        int x;
+        T y;
+        T x;
         ref operator +=(const_ref right)
         {
             y += right.y;
