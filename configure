@@ -14,7 +14,7 @@ my $libdir='$(exec_prefix)/lib';
 my $libexecdir='$(exec_prefix)/libexec';
 
 my $datarootdir='$(prefix)/share';
-my $datadir='$(datarootdir)';
+my $datadir='$(datarootdir)/libmormegil';
 my $sysconfdir='$(prefix)/etc';
 my $sharedstatedir='$(prefix)/com';
 my $localstatedir='$(prefix)/var';
@@ -44,6 +44,9 @@ my $man5ext='.5';
 my $man6ext='.6';
 my $man7ext='.7';
 
+# feature control
+my $disable_statics='false';
+
 my $verbose=1;
 GetOptions(
 'prefix=s' => \$prefix, 'exec_prefix=s' => \$exec_prefix,
@@ -63,6 +66,7 @@ GetOptions(
 'dvidir=s' => \$dvidir, 'pdfdir=s' => \$pdfdir,
 'psdir=s' => \$psdir, 'infodir=s' => \$infodir,
 'verbose' => \$verbose,
+'disable-statics' => sub { $disable_statics='true' },
 'quiet' => sub { $verbose = 0; } );
 
 print STDOUT "Configuring libmormegil build/install process...\n" if $verbose;
@@ -117,3 +121,8 @@ print DIRS_MK "pdfdir=${pdfdir}\n";
 print DIRS_MK "psdir=${psdir}\n";
 print DIRS_MK "infodir=${infodir}\n";
 close(DIRS_MK);
+
+print STDOUT "Writing features.mk...\n" if $verbose;
+open(FEATURES_MK, '>', "features.mk") or die $!;
+print FEATURES_MK "DISABLE_STATICS=${disable_statics}";
+close(FEATURES_MK);
