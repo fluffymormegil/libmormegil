@@ -2,10 +2,14 @@ libmormegil is a collection of library functions and C++ classes intended for
 use in various projects that I host on github under the name fluffymormegil.
 
 The header files describing the APIs of libmormegil are generally distributed
-under the terms of the Creative Commons Public Domain Dedication (cc-0). Where
-a libmormegil API's implementation involves separate source code, the source
-code for that implementation is distributed under a Berkeley-style licence
-(permissive copyright).
+under the terms of the Creative Commons Public Domain Dedication (cc-0).
+
+Where a libmormegil API's implementation involves separate source code, the
+source code for that implementation is distributed under a Berkeley-style
+licence (permissive copyright).
+
+The manual pages documenting the APIs of libmormegil are distributed under
+the terms of the Creative Commons Public Domain Dedication (cc-0).
 
 == INSTALLATION ==
 
@@ -36,7 +40,7 @@ meanings:
 
 * Y is the minor version.
 
-* Z if the backwards-compatibility count.
+* Z is the patch level.
 
 If you want the official version of libmormegil to use ELF symbol versioning,
 ask nicely and offer to pay me consultancy rates. (I will probably still say
