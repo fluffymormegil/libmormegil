@@ -8,4 +8,5 @@ a.out
 *.tgz
 .*.sw?
 dirs.mk
+features.mk
 libmormegil-1.0.0/*
