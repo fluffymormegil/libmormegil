@@ -78,9 +78,9 @@ namespace libmormegil
             return (y > right.y) || ((y == right.y) && (x > right.x));
         }
 
-        int length_taxi() const { return abs(y) + abs(x); }
-        int lengthsq() const { return y * y + x * x; }
-        int length_inf() const { return std::max(abs(y), abs(x)); }
+        T length_taxi() const { return abs(y) + abs(x); }
+        T lengthsq() const { return y * y + x * x; }
+        T length_inf() const { return std::max(abs(y), abs(x)); }
         bool cardinal() const { return (abs(y) == abs(x)) || (y && !x) || (x && !y); }
     };
 
@@ -88,8 +88,8 @@ namespace libmormegil
     {
         typedef basic_coord<T>& ref;
         typedef const basic_coord<T>& const_ref;
-        int y;
-        int x;
+        T y;
+        T x;
         ref operator +=(const basic_offset<T>& right)
         {
             y += right.y;
@@ -139,28 +139,28 @@ namespace libmormegil
             return (y > right.y) || ((y == right.y) && (x > right.x));
         }
 
-        int dist_taxi(const_ref right) const
+        T dist_taxi(const_ref right) const
         {
             return abs(y - right.y) + abs(x - right.x);
         }
-        int distsq(const_ref right) const
+        T distsq(const_ref right) const
         {
             return ((y - right.y) * (y - right.y) +
                     (x - right.x) * (x - right.x));
         }
-        int dist_inf(const_ref right) const
+        T dist_inf(const_ref right) const
         {
             return std::max(abs(y - right.y), abs(x - right.x));
         }
-        int size_taxi() const
+        T size_taxi() const
         {
             return abs(y) + abs(x);
         }
-        int sizesq() const
+        T sizesq() const
         {
             return y * y + x * x;
         }
-        int size_inf() const
+        T size_inf() const
         {
             return std::max(abs(y), abs(x));
         }
