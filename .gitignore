@@ -10,3 +10,5 @@ a.out
 dirs.mk
 features.mk
 libmormegil-1.0.0/*
+build
+debian
