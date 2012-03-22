@@ -2,6 +2,7 @@
 # Makefile - makefile for building libmormegil.so
 
 include dirs.mk
+include features.mk
 include version.mk
 
 # If your default shell is not sufficiently POSIXesque, you may need to set
@@ -17,23 +18,27 @@ INC_DIR=include/libmormegil
 # LIB_SONAME is majorversioned name of the library
 # LIB_SHORTNAME is unversioned name of the library
 LIBMORMEGIL_STATIC:=libmormegil.a
-LIBMORMEGIL_REALNAME:=libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
+LIBMORMEGIL_REALNAME:=libmormegil.so.$(MAJOR_VER).$(MINOR_VER).$(PATCH_VER)
 LIBMORMEGIL_SONAME:=libmormegil.so.$(MAJOR_VER)
 LIBMORMEGIL_SHORTNAME=libmormegil.so
 LIBMORMEGIL_STATIC_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_STATIC)
 LIBMORMEGIL_SHARED_BUILT:=$(LIB_BUILDDIR)/$(LIBMORMEGIL_REALNAME)
 LIBOBJS:=$(OBJ_BUILDDIR)/stlprintf.o $(OBJ_BUILDDIR)/stlwprintf.o $(OBJ_BUILDDIR)/stlfgets.o $(OBJ_BUILDDIR)/stlwfgets.o $(OBJ_BUILDDIR)/points.o $(OBJ_BUILDDIR)/Appcfg.o $(OBJ_BUILDDIR)/ordinaldate.o $(OBJ_BUILDDIR)/dice.o
 
+ifeq ($(DISABLE_STATICS), true)
+LIBS:=$(LIBMORMEGIL_SHARED_BUILT)
+else
 LIBS:=$(LIBMORMEGIL_SHARED_BUILT) $(LIBMORMEGIL_STATIC_BUILT)
+endif
 ALL_LIBOBJS:=$(LIBOBJS) $(LIBOBJS_C)
 
-MANPAGES=man/dice.3 man/libmormegil.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
+MANPAGES=man/dice.3 man/libmormegil.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::Line.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
 
-SRCARCH_NAME:=libmormegil-$(MAJOR_VER).$(MINOR_VER).$(COMPAT_DEPTH)
+SRCARCH_NAME:=libmormegil-$(MAJOR_VER).$(MINOR_VER).$(PATCH_VER)
 # The list of what goes in the deliverable source archive. Only subsystems
 # which I deem "ready" get put into the deliverable archive.
 SRCARCH_SRC:=src/Appcfg.cc src/dice.cc src/points.cc src/stlfgets.cc src/stlwfgets.cc src/ordinaldate.cc src/stlprintf.cc src/stlwprintf.cc
-SRCARCH_INC:=$(INC_DIR)/dice.h $(INC_DIR)/isotime.h $(INC_DIR)/Appcfg.hh $(INC_DIR)/Coord.hh $(INC_DIR)/Points.hh $(INC_DIR)/S20prng.hh $(INC_DIR)/abs.hh $(INC_DIR)/divup.hh $(INC_DIR)/serial.hh $(INC_DIR)/sign.hh $(INC_DIR)/stlfgets.hh $(INC_DIR)/stlwfgets.hh $(INC_DIR)/stlprintf.hh $(INC_DIR)/stlwprintf.hh
+SRCARCH_INC:=$(INC_DIR)/dice.h $(INC_DIR)/isotime.h $(INC_DIR)/Appcfg.hh $(INC_DIR)/Coord.hh $(INC_DIR)/Line.hh $(INC_DIR)/Points.hh $(INC_DIR)/S20prng.hh $(INC_DIR)/abs.hh $(INC_DIR)/divup.hh $(INC_DIR)/serial.hh $(INC_DIR)/sign.hh $(INC_DIR)/stlfgets.hh $(INC_DIR)/stlwfgets.hh $(INC_DIR)/stlprintf.hh $(INC_DIR)/stlwprintf.hh
 SRCARCH_MAN=man/libmormegil.3 man/dice.3 man/libmormegil::Appcfg.3 man/libmormegil::Coord.3 man/libmormegil::Points.3 man/libmormegil::S20prng.3 man/libmormegil::abs.3 man/libmormegil::divup.3 man/libmormegil::isotime.3 man/libmormegil::serialize.3 man/libmormegil::sign.3 man/libmormegil::stlfgets.3 man/libmormegil::stlprintf.3
 SRCARCH_LIC=CC0 BSD-lite COPYING Copyright
 SRCARCH_EXA=examples/dice-test.c examples/coord-test.cc
@@ -45,12 +50,10 @@ SRCARCH_TOP:=$(SRCARCH_LIC) README changelog configure version.mk Makefile Bugs
 #  2. We need THIS version's headers to take precedence over the system
 #     headers.
 #  3. CFLAGS and CXXFLAGS are for the user!
-COMMON_FLAGS:=-fPIC -I./include -DLIBMORMEGIL_MAJVER=$(MAJOR_VER) -DLIBMORMEGIL_MINVER=$(MINOR_VER) -DLIBMORMEGIL_COMPAT_DEPTH=$(COMPAT_DEPTH)
-CXXFLAGS=
+COMMON_FLAGS:=-fPIC -I./include -DLIBMORMEGIL_MAJVER=$(MAJOR_VER) -DLIBMORMEGIL_MINVER=$(MINOR_VER) -DLIBMORMEGIL_PATCH_VER=$(PATCH_VER)
 #  3. For linking, we have to specify that the output should be a shared
 #     object and, as before, that we want position-independent code.
 LINKSTEP_FLAGS=-shared -fPIC
-CFLAGS=
 
 .PHONY: all clean install install-headers install-libs srcarchive
 
@@ -69,7 +72,7 @@ $(LIBMORMEGIL_STATIC_BUILT): $(LIBOBJS)
 	ar rcs $@ $^
 
 clean:
-	-rm -f $(LIBS) $(ALL_LIBOBJS)
+	-rm -f $(LIBMORMEGIL_SHARED_BUILT) $(LIBMORMEGIL_STATIC_BUILT) $(ALL_LIBOBJS)
 	-rm -rf $(SRCARCH_NAME) $(SRCARCH_NAME).tar.gz
 
 distclean: clean
@@ -78,9 +81,9 @@ distclean: clean
 install: install-headers install-libs install-docs
 
 # Note that this does _not_ create symlinks. That's ldconfig's job.
-install-libs: $(LIBMORMEGIL_SHARED_BUILT)
+install-libs: all
 	mkdir -p $(DESTDIR)$(libdir)
-	install -m 0755 $(LIBMORMEGIL_STATIC_BUILT) $(DESTDIR)$(libdir)/$(LIBMORMEGIL_STATIC)
+	[ -f $(LIBMORMEGIL_STATIC_BUILT) ] && install -m 0644 $(LIBMORMEGIL_STATIC_BUILT) $(DESTDIR)$(libdir)/$(LIBMORMEGIL_STATIC)
 	install -m 0755 $(LIBMORMEGIL_SHARED_BUILT) $(DESTDIR)$(libdir)/$(LIBMORMEGIL_REALNAME)
 
 install-docs:
