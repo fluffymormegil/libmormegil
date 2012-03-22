@@ -23,6 +23,9 @@ namespace libmormegil
         typedef const basic_coord<T>& const_punktref;
         basic_coord<T> topleft;
         basic_coord<T> botright;
+        T length_taxi() const { return topleft.dist_taxi(botright); }
+        T length_inf() const { return topleft.dist_inf(botright); }
+        T lengthsq() const { return topleft.distsq(botright); }
     };
     typedef basic_line<int32_t> Line;
     typedef basic_line<int64_t> Line64;

@@ -1,0 +1,28 @@
+.TH "LIBMORMEGIL::LINE" 3 "March 22, 2012" "libmormegil Version 1.1" "libmormegil User Manual"
+.SH NAME
+libmormegil::basic_line, libmormegil::Line, libmormegil::Line64 \- line segments on a plane
+.SH SYNOPSIS
+#include <libmormegil/Line.hh>
+
+.SH DESCRIPTION
+.I libmormegil::basic_line
+is a template type for representing line segments on a two-dimensional plane.
+
+The member functions \fIlength_taxi\fP and \fIlength_inf\fP return the
+length of the line segment under the L_1 (aka "Manhattan" or "taxicab") and
+L_inf (aka "Chebyshev" or "chessboard") metrics, respectively.  The member
+function \fIlengthsq\fP returns the square of the magnitude of the length
+under the Euclidean metric.
+
+A typedef \fIlibmormegil::Line\fR is provided; this uses type \fIint32_t\fR
+as the template parameter.
+
+A typedef \fIlibmormegil::Line64\fR is provided; this uses type \fIint64_t\fR
+as the template parameter.
+
+.SH AUTHOR
+Martin Read <mpread@chiark.greenend.org.uk>
+
+.SH SEE ALSO
+
+libmormegil(3)
