@@ -4,13 +4,11 @@ libmormegil::stlfgets, libmormegil::stlwfgets \- fgets-alikes for std::string
 .SH SYNOPSIS
 #include <libmormegil/stlfgets.hh>
 
-int libmormegil::stlfgets(std::string& str, size_t size_suggest,
-                          FILE *fp, size_t hard_size);
+\fBint libmormegil::stlfgets(std::string& \fIstr\fP, size_t \fIsize_suggest\fP, FILE *fp, size_t hard_size);
 
 #include <libmormegil/stlwfgets.hh>
 
-int libmormegil::stlwfgets(std::wstring& str, size_t size_suggest,
-                          FILE *fp, size_t hard_size);
+int libmormegil::stlwfgets(std::wstring& \fIstr\fP, size_t \fIsize_suggest\fP = 128, FILE *\fIfp\fP, size_t \fIhard_size = 0x7fffffff\fP);\fR
 
 .SH DESCRIPTION
 The \fIlibmormegil::stlfgets\fP function clears the contents of \fIstr\fP,

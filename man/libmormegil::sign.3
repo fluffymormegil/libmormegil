@@ -4,7 +4,7 @@ libmormegil::sign \- compute absolute value
 .SH SYNOPSIS
 #include <libmormegil/mathops.hh>
 
-template<typename T> T libmormegil::sign(const T& orig);
+\fBtemplate<typename T> T libmormegil::sign(const T& \fIorig\fP);\fR
 
 .SH DESCRIPTION
 .I libmormegil::sign
@@ -12,6 +12,10 @@ is a naively written template for obtaining the sign of \fIorig\fP.
 
 .SH RETURNS
 1 if \fIorig\fP is positive, 0 if \fIorig\fP is 0, -1 if orig is negative.
+
+.SH NOTES
+
+The <\fIlibmormegil/Coord.hh\fP> header file includes template specializations of this function for the \fIlibmormegil::Coord\fP, \fIlibmormegil::Offset\fP, \fIlibmormegil::Coord64\fP, and \fIlibmormegil::Offset64\fP types.
 
 .SH CAVEATS
 

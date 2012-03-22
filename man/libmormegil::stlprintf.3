@@ -2,17 +2,21 @@
 .SH NAME
 libmormegil::stlprintf, libmormegil::vstlprintf, libmormegil::stlwprintf, libmormegil::vstlwprintf \- (v)s(w)printf-alikes for std::string
 .SH SYNOPSIS
+#include <string>
+
+#include <stdarg.h>
+
 #include <libmormegil/stlprintf.hh>
 
-std::string libmormegil::vstlprintf(const char *fmt, va_list args);
+\fBstd::string libmormegil::vstlprintf(const char *\fIfmt\fP, va_list \fIargs\fP);\fR
 
-std::string libmormegil::stlprintf(const char *fmt, ...);
+\fBstd::string libmormegil::stlprintf(const char *\fIfmt\fP, ...);\fR
 
 #include <libmormegil/stlwprintf.hh>
 
-std::string libmormegil::vstlwprintf(const char *fmt, va_list args);
+\fBstd::wstring libmormegil::vstlwprintf(const char *\fIfmt\fP, va_list \fIargs\fP);\fR
 
-std::string libmormegil::stlwprintf(const char *fmt, ...);
+\fBstd::wstring libmormegil::stlwprintf(const char *\fIfmt\fP, ...);\fR
 
 .SH DESCRIPTION
 The \fIlibmormegil::stlprintf\fP and \fIlibmormegil::vstlprintf\fP functions

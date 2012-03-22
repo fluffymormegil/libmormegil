@@ -4,23 +4,23 @@ libmormegil::Points \- tracker object for hit points or similar
 .SH SYNOPSIS
 #include <libmormegil/Points.hh>
 
-int32_t libmormegil::Points::gain(int32_t amount, libmormegil::Points::Gain_mode mode);
+\fBint32_t libmormegil::Points::gain(int32_t \fIamount\fP, libmormegil::Points::Gain_mode \fImode\fP);
 
-int32_t libmormegil::Points::lose(int32_t amount);
+\fBint32_t libmormegil::Points::lose(int32_t \fIamount\fP);
 
-int32_t libmormegil::Points::boost(int32_t amount);
+\fBint32_t libmormegil::Points::boost(int32_t \fIamount\fP);
 
-int32_t libmormegil::Points::restore(int32_t amount);
+\fBint32_t libmormegil::Points::restore(int32_t \fIamount\fP);
 
-int32_t libmormegil::Points::current() const;
+\fBint32_t libmormegil::Points::current() const;
 
-int32_t libmormegil::Points::maximum() const;
+\fBint32_t libmormegil::Points::maximum() const;
 
-void libmormegil::Points::force_current(int32_t c);
+\fBvoid libmormegil::Points::force_current(int32_t \fIc\fP);
 
-void libmormegil::Points::force_maximum(int32_t m);
+\fBvoid libmormegil::Points::force_maximum(int32_t \fIm\fP);
 
-void libmormegil::Points::Points(int32_t mv = 0, int32_t c = 0);
+\fBvoid libmormegil::Points::Points(int32_t \fImv\fP = 0, int32_t \fIc\fP = 0);
 
 .SH DESCRIPTION
 .I libmormegil::Points

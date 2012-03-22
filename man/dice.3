@@ -6,15 +6,15 @@ dice, dice_setstate, dice_getstate \- simulate rolling of arbitrary dice
 
 #include <libmormegil/dice.h>
 
-int dice(int count, int sides);
+\fBint dice(int \fIcount\fP, int \fIsides\fP);\fR
 
-void dice_setstate(const uint32_t *key, const uint32_t *nonce, const uint64_t *counter, const int *subcounter);
+\fBvoid dice_setstate(const uint32_t *\fIkey\fP, const uint32_t *\fInonce\fP, const uint64_t *\fIcounter\fP, const int *\fIsubcounter\fP);\fR
 
-void dice_getstate(uint32_t *key, uint32_t *nonce, uint64_t *counter, int *subcounter);
+\fBvoid dice_getstate(uint32_t *\fIkey\fP, uint32_t *\fInonce\fP, uint64_t *\fIcounter\fP, int *\fIsubcounter\fP);\fR
 
 .SH DESCRIPTION
 .I dice
-is a C-compatible wrapper around an instance of the libmormegil::S20prng
+is a C-compatible wrapper around an instance of the \fIlibmormegil::S20prng\fP
 pseudorandom number generator.
 
 The \fIdice\fP function simulates rolling \fIcount\fP dice of \fIsides\fP
@@ -29,9 +29,7 @@ rolls two six-sided dice, providing a number between 2 and 12 inclusive.
 The \fIdice_setstate\fP function uses the contents of the memory pointed
 to by \fIkey\fP, \fInonce\fP, \fIcounter\fP, and \fIsubcounter\fP to
 initialize the internal state of the libmormegil::S20prng object used by
-the \fIdice\fP function. The data pointed to by these pointers should be
-as follows:
-
+the \fIdice\fP function. The data pointed to by these pointers should be as follows: 
 .IP "key" 16
 An array of eight unsigned 32-bit integers to be used as a Salsa20/12 key.
 
@@ -72,6 +70,7 @@ The value of \fIsides\fP or \fIcount\fP is negative.
 .IP \(bu 4
 The product of \fIsides\fP and \fIcount\fP would overflow a signed int.
 
+.PP
 Extremely large values of \fIsides\fP may cause delays due to the mechanism
 used for converting the libmormegil::S20prng output into a number between
 0 and (\fIsides\fP - 1).

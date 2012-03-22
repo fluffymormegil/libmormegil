@@ -1,57 +1,104 @@
 .TH "LIBMORMEGIL::SERIAL" 3 "October 10, 2010" "libmormegil Version 1.0" "libmormegil User Manual"
 .SH NAME
-libmormegil::serialize, libmormegil::deserialize \- offsets and points on a plane
+libmormegil::serialize, libmormegil::serialize_uc, libmormegil::deserialize, libmormegil::deserialize_uc \- offsets and points on a plane
 .SH SYNOPSIS
 #include <stdio.h>
 
 #include <libmormegil/serial.hh>
 
-int libmormegil::serialize(FILE *fp, const int64_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, int64_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, const int32_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, int32_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, const int16_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, int16_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, const uint64_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, uint64_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, const uint32_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, uint32_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, const uint16_t *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, uint16_t \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, Coord const *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, Coord const& \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, Coord64 const *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, Coord64 const& \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, Offset const *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, Offset const& \fIdata\fP);\fR
 
-int libmormegil::serialize(FILE *fp, Offset64 const *data);
+\fBvoid libmormegil::serialize(FILE *\fIfp\fP, Offset64 const& \fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, int64_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, int64_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, int32_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, int32_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, int16_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, int16_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, uint64_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, uint64_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, uint32_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, uint32_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, uint16_t *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, uint16_t *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, Coord *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, Coord *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, Coord64 *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, Coord64 *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, Offset *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, Offset *\fIdata\fP);\fR
 
-int libmormegil::deserialize(FILE *fp, Offset64 *data);
+\fBvoid libmormegil::deserialize(FILE *\fIfp\fP, Offset64 *\fIdata\fP);\fR
 
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, int64_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, int32_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, int16_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, uint64_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, uint32_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, uint16_t \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, Coord const& \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, Coord64 const& \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, Offset const& \fIdata\fP);\fR
+
+\fBint libmormegil::serialize_uc(FILE *\fIfp\fP, Offset64 const& \fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, int64_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, int32_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, int16_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, uint64_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, uint32_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, uint16_t *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, Coord *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, Coord64 *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, Offset *\fIdata\fP);\fR
+
+\fBint libmormegil::deserialize_uc(FILE *\fIfp\fP, Offset64 *\fIdata\fP);\fR
 
 .SH DESCRIPTION
 .I libmormegil::serialize
 is a family of overloaded functions providing host-endianness-independent
 serialization for basic integer types and the coordinate/offset types provided
-in \fIlibmormegil/Coord.hh\fP
+in <\fIlibmormegil/Coord.hh\fP>. The serialized form of the data is in
+big-endian form.
+
+.SH RETURN VALUE
+The \fI_uc\fP forms provide the return value of the \fIfread()\fP or \fIfwrite()\fP
+call used to write the data to the stream pointed to by \fIfp\fP.
+
+.SH EXCEPTIONS
+In the event of an I/O error, the unsuffixed forms will throw an \fIint\fP. This \fIint\fP will contain the value of \fIerrno\fP after the failed \fIchecked_fread()\fP or \fIchecked_fwrite()\fP call.
 
 .SH CAVEATS
 
@@ -62,4 +109,4 @@ Martin Read <mpread@chiark.greenend.org.uk>
 
 .SH SEE ALSO
 
-libmormegil(3), dice(3), libmormegil::Coord(3)
+libmormegil(3), dice(3), libmormegil::Coord(3), libmormegil::checked_fread(3), libmormegil::checked_fwrite(3), stdio(1)

@@ -6,11 +6,11 @@ libmormegil::S20prng \- a pseudorandom number generator using Salsa20/12
 
 #include <libmormegil/S20prng.hh>
 
-uint32_t libmormegil::S20prng::generate();
+\fBuint32_t libmormegil::S20prng::generate();\fR
 
-void libmormegil::S20prng::initialize(const uint32_t *k, const uint32_t *n, const uint64_t *c, const int *s);
+\fBvoid libmormegil::S20prng::initialize(const uint32_t *\fIk\fP, const uint32_t *\fIn\fP, const uint64_t *\fIc\fP, const int *\fIs\fP);\fR
 
-void libmormegil::S20prng::extract_state(uint32_t *k, uint32_t *n, uint64_t *c, int *s);
+\fBvoid libmormegil::S20prng::extract_state(uint32_t *\fIk\fP, uint32_t *\fIn\fP, uint64_t *\fIc\fP, int *\fIs\fP);\fR
 
 .SH DESCRIPTION
 .I libmormegil::S20prng
@@ -45,7 +45,7 @@ generator.)
 
 .PP
 Applications which need to take a snapshot of the generator's internal state
-for whatever reason should use the 
+for whatever reason should use the \fIextract_state\fP member function.
 
 Obtaining suitable initialization data for the generator is the application
 author's responsibility. See the file \fBexamples/S20prng-test.cc\fR in the
